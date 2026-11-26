@@ -126,3 +126,13 @@ test("best practices: ten organizations, filterable overview, sourced pages, TOG
   assert.equal(data("TOPICS").togaf.title, "TOGAF®");
   assert.deepEqual(errors, []);
 });
+
+test("RAID across frameworks: one row per RAID element, one cell per framework", async () => {
+  const { d, data, errors } = await loadApp("raid-map");
+  const rows = [...d.querySelectorAll("table.rolemap tbody tr")];
+  assert.deepEqual(rows.map(r => r.querySelector("th").childNodes[0].textContent), ["Risks", "Assumptions", "Issues", "Dependencies"]);
+  rows.forEach(r => assert.equal(r.querySelectorAll("td").length, 6));
+  assert.match(d.querySelector("table.rolemap thead th").textContent, /RAID element/);
+  assert.equal(data("TOPICS")["raid-map"].group, "raid");
+  assert.deepEqual(errors, []);
+});

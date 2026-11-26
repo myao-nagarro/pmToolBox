@@ -318,7 +318,7 @@ sections:[
 ["Exploit","Make sure it happens."],["Enhance","Increase probability or impact."],["Share","Partner with someone better placed to capture it."],["Accept","Take it if it comes."],["Escalate","Pass to the level that can act on it."]]},
 {t:"list",h:"Risk register fields",i:[
 ["ID, description, category","Cause–event–effect wording."],["Probability, impact, score","Use a consistent scale, e.g. 1–5 × 1–5."],["Proximity","When it could occur."],["Owner and actionee","Owner monitors; actionee carries out the response."],["Response and status","What is being done and whether it is working."]]}
-],related:["assumptions","issues","dependencies","prince2"]},
+],related:["assumptions","issues","dependencies","prince2","raid-map"]},
 
 assumptions:{group:"raid",title:"Managing assumptions",tagline:"What the plan takes to be true without proof, and when you’ll check.",
 sections:[
@@ -332,7 +332,7 @@ sections:[
 ["Assumption","Believed to be true, but not certain. Must be validated."],["Constraint","A known limit you must work within, e.g. a fixed budget or regulatory deadline."]]},
 {t:"list",h:"Good practice",i:[
 ["Be specific","“The client provides test data for 3 banks by week 6” beats “Data will be available”."],["Put them in the contract","For client work, list key assumptions in the statement of work."],["Review at stage boundaries","Assumptions age quickly."]]}
-],related:["risk","issues","business-justification"]},
+],related:["risk","issues","business-justification","raid-map"]},
 
 issues:{group:"raid",title:"Managing issues",tagline:"Things that have happened and need action now.",
 sections:[
@@ -342,7 +342,7 @@ sections:[
 {t:"list",h:"Issue log fields",i:[
 ["Type and priority","Request for change, off-specification or problem; priority and severity."],["Owner","Who drives it to resolution."],["Target date","When it must be resolved."],["Decision and status","What was decided, by whom, and where it stands."]]},
 {t:"note",h:"Escalate early",x:"Escalation is a control, not a failure. If an issue will breach agreed tolerance, raise an exception or escalation with options and a recommendation, not just the problem."}
-],related:["risk","dependencies","prince2","rapid"]},
+],related:["risk","dependencies","prince2","rapid","raid-map"]},
 
 dependencies:{group:"raid",title:"Managing dependencies",tagline:"Links between tasks, teams or projects that affect when work can happen.",
 sections:[
@@ -353,7 +353,29 @@ sections:[
 ["Mandatory","Inherent in the work (you can’t test before you build)."],["Discretionary","A chosen sequence, based on best practice."],["External","On parties outside the project: vendors, other projects, regulators."],["Internal","Between teams or tasks within the project."]]},
 {t:"steps",h:"Managing them",i:[
 ["Identify","During planning and in PI Planning or cross-team syncs."],["Record giver, receiver and need-by date","Both sides must agree what and when."],["Visualize","Network diagram, critical path or a dependency board."],["Track","Review at a regular cadence; treat slipping ones as risks."],["Escalate","Unresolved conflicts go to programme or portfolio level."]]}
-],related:["risk","safe","pmbok","issues"]},
+],related:["risk","safe","pmbok","issues","raid-map"]},
+
+"raid-map":{group:"raid",title:"RAID across frameworks",tagline:"How each framework handles risks, assumptions, issues and dependencies, and where it leaves a gap.",
+sections:[
+{t:"p",x:"Every delivery method has to deal with what might go wrong, what is taken for granted, what has gone wrong and what the work depends on. Few use the four RAID words. Some give each element its own register, some fold it into a ceremony or a board, and some leave it out. The map shows where each element lives so you can run one RAID log across a hybrid project."},
+{t:"rolemap",h:"RAID map",corner:"RAID element",cols:["PMI / PMBOK","PRINCE2","Scrum","SAFe","Kanban","ITIL"],links:["pmbok","prince2","scrum","safe","kanban","itil"],rows:[
+["Risks","Uncertain events that could help or harm objectives.","Risk register and risk management plan; qualitative and quantitative analysis; planned responses","Risk theme: risk register, risk management approach, risk owner and actionee; separate responses for threats and opportunities","– Not prescribed; handled through transparency, inspection and adaptation, and by ordering risk-reduction work in the Product Backlog","ROAM in PI Planning (Resolved, Owned, Accepted, Mitigated); risks tracked at program level","≈ Explicit policies, classes of service and WIP limits manage flow risk; no risk register","Risk management practice (general management practice)"],
+["Assumptions","What the plan takes to be true without proof.","Assumption log, reviewed and validated","≈ Recorded in the Project Brief and Project Initiation Documentation; no separate log","– Not defined; tested by delivering and inspecting each Increment","≈ Hypotheses and assumptions in the epic’s lean business case, tested through an MVP","– Not defined","– Not defined as a practice; captured in service design and business cases"],
+["Issues","Problems that have happened and need action now.","Issue log; change control","Issue register and issue reports; request for change, off-specification or problem or concern","Impediments, removed by the Scrum Master or raised in the Daily Scrum","≈ Impediments raised in team and ART syncs; Inspect and Adapt problem-solving workshop","Blocked items flagged on the board and discussed at standups and flow reviews","Incident management and problem management; change enablement for requests"],
+["Dependencies","Links between tasks, teams or projects that affect when work can happen.","Logical relationships (FS, SS, FF, SF) and dependency determination when sequencing activities","≈ Product flow diagram and plan dependencies in the Plans theme","≈ Not defined; the Product Owner orders the backlog and teams coordinate","Program Board in PI Planning; ART sync and Scrum of Scrums","≈ Visualized on the board with blocked markers and policies for handling them","≈ Relationships between configuration items; supplier management for external dependencies"]]},
+{t:"list",h:"Where the handling differs",i:[
+["Registers versus rhythm","PMBOK and PRINCE2 keep logs that are reviewed at set points. Scrum, SAFe and Kanban rely on events and boards, so the information sits in conversation and visual signals unless a team also keeps a log."],
+["Assumptions are the weakest link","Only PMBOK has an assumption log by name. In PRINCE2 they sit in the Project Brief. In agile methods an assumption is tested by building and learning, which works only if the team states it first."],
+["Issues versus impediments","An agile impediment is a blocker to the team’s work. A PRINCE2 or PMBOK issue can also be a change request or a quality problem. A hybrid project needs one definition and one route to escalate."],
+["Dependencies at scale","SAFe makes dependencies a planning event with the Program Board. Scrum and Kanban leave them to the teams, so cross-team dependencies need an explicit owner."],
+["Risk is a practice in ITIL","ITIL treats risk management as a general practice that supports every service, while project frameworks treat it as part of the project."]]},
+{t:"list",h:"Running RAID in a hybrid project",i:[
+["Keep one RAID log","One shared list with four tabs or types avoids the same item being tracked in three places."],
+["Map the vocabulary","Agree that an impediment above a stated size becomes an issue, and that a risk which occurs becomes an issue with the same owner."],
+["Use the framework’s own rhythm","Review the log at stage boundaries in PRINCE2, in refinement or sprint review in Scrum, and in PI Planning and Inspect and Adapt in SAFe."],
+["Name an owner for each item","Include dependencies and assumptions, which are often left unowned."]]},
+{t:"note",h:"Check the version",x:"The table describes the PMBOK Guide 6th and 7th editions, PRINCE2 (2017), the Scrum Guide 2020, SAFe, the Kanban Method and ITIL 4. Names and artefacts change between editions, so confirm against the edition you use."}
+],related:["risk","assumptions","issues","dependencies","pmbok","prince2","scrum","safe"]},
 
 okr:{group:"concepts",title:"Objectives and Key Results (OKR)",tagline:"A goal-setting system linking ambitious objectives to measurable results.",
 sections:[

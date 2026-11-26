@@ -74,7 +74,7 @@ function seeAlso(id){
   if(n.gloss){const x=XREF.get(id);const text=(n.label+" "+n.desc).toLowerCase();
     const kw=Object.entries(KW).map(([tid,ws])=>[tid,ws.filter(w=>text.includes(w)).length]).filter(([tid,c])=>c>0&&tid!==n.topic).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([tid])=>"t:"+tid);
     return [...new Set([...x.same,...x.out,...x.in.slice(0,4),...kw])].slice(0,10);}
-  if(n.kind==="topic"){const t=TOPICS[n.topic];(t.related||[]).concat(t.group==="frameworks"?["role-map"]:[]).forEach(r=>{if(TOPICS[r])out.push("t:"+r);});}
+  if(n.kind==="topic"){const t=TOPICS[n.topic];(t.related||[]).concat(t.group==="frameworks"?["role-map","raid-map"]:[]).forEach(r=>{if(TOPICS[r])out.push("t:"+r);});}
   else if(n.kind==="section"||n.kind==="item"){
     (LABELS.get(n.label.toLowerCase())||[]).forEach(o=>{const t=NODES.get(o).topic;if(o!==id&&t!==n.topic&&!out.some(x=>NODES.get(x).topic===t))out.push(o);});
     const text=(n.label+" "+n.desc).toLowerCase();

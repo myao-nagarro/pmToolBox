@@ -33,7 +33,7 @@ function renderHome(){
 
 function renderTopic(id){
   const t=TOPICS[id];
-  const rel=(t.related||[]).concat(t.group==="frameworks"?["role-map"]:[]).filter(r=>TOPICS[r]);
+  const rel=(t.related||[]).concat(t.group==="frameworks"?["role-map","raid-map"]:[]).filter(r=>TOPICS[r]);
   const peers=Object.keys(TOPICS).filter(k=>TOPICS[k].group===t.group),pi=peers.indexOf(id);
   const prev=peers[pi-1],next=peers[pi+1];
   const hue=t.bp?`--gc:${t.bp.hue};`:`--gc:var(--c-${t.group});`;
