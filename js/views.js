@@ -93,7 +93,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-theme]");i
 /* Search */
 function flat(t){
   const parts=[t.title,t.tagline];
-  t.sections.forEach(s=>{if(s.x)parts.push(s.x);if(s.h)parts.push(s.h);if(s.i)s.i.forEach(p=>parts.push(p.join(": ")));if(s.rows)s.rows.forEach(r=>parts.push(r.join(" ")));if(s.t==="pi")QUADS.forEach(q=>parts.push(q.name+": "+q.desc));if(s.t==="gloss")GLOSSARY[s.fw].terms.forEach(g=>parts.push(g[0]+": "+g[1]+" Example: "+(g[3]||"")));});
+  t.sections.forEach(s=>{if(s.x)parts.push(s.x);if(s.h)parts.push(s.h);if(s.i)s.i.forEach(p=>parts.push(p.join(": ")));if(s.t==="dd")s.dos.concat(s.donts).forEach(p=>parts.push(p.join(": ")));if(s.rows)s.rows.forEach(r=>parts.push(r.join(" ")));if(s.t==="pi")QUADS.forEach(q=>parts.push(q.name+": "+q.desc));if(s.t==="gloss")GLOSSARY[s.fw].terms.forEach(g=>parts.push(g[0]+": "+g[1]+" Example: "+(g[3]||"")));});
   return parts.join(" \n ");
 }
 let INDEX=null;

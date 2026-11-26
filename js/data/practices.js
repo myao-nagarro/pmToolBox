@@ -250,3 +250,140 @@ sections:[
 {t:"note",h:"What we need",x:"Please share the organization’s website or documents, or confirm whether another name was meant, such as PMI. The page can then be completed with sourced practices."}
 ],related:["pmbok","risk","raci"]}
 });
+
+/* ---------- Added organizations ---------- */
+Object.assign(TOPICS, {
+
+"bp-toyota":{group:"bestpractices",title:"Toyota",tagline:"Lean from the Toyota Production System, adapted to product development and agile software.",
+bp:{hue:"#B8431B",mark:"T",headline:"Lean first, then agile where it fits",fw:{"Scrum / Agile":2,"Kanban / flow":2,"Stage-gate / predictive":1}},
+sections:[
+{t:"p",x:"Toyota is the origin of the lean and kanban ideas that many project frameworks borrow. The Toyota Production System uses just-in-time flow, with kanban as the tool that lets each process take what it needs from the one before. Its product development system adds a chief engineer with end-to-end responsibility and set-based concurrent engineering. Toyota Connected, its software arm, combines Scrum with lean thinking, which it calls “Scrum The Toyota Way”."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Toyota uses it","Evidence"],rows:[
+["Lean / Kanban","Just-in-time flow: later processes pull from earlier ones, with kanban as the signalling tool.","Toyota’s own history and production system pages"],
+["Toyota Product Development System","A chief engineer holds ultimate responsibility for the product. Key integrating events have fixed dates; options are kept open and narrowed over time (set-based concurrent engineering).","MIT Sloan Management Review; Lean Enterprise Institute"],
+["Scrum","Toyota Connected describes “Scrum The Toyota Way”, combining agile learning with lean thinking.","InfoQ reports on Toyota Connected"],
+["Waterfall (earlier software)","A 2010 report says Toyota’s software group had used waterfall and was applying the Toyota Production System to software rather than adopting agile methods.","InfoQ, 2010 (dated)"]]},
+{t:"list",h:"Project management practices",i:[
+["Pull, don’t push","Start work when downstream capacity asks for it, which keeps work in progress low."],
+["Chief engineer","One accountable leader integrates the whole product, rather than a committee."],
+["Key integrating events","Fixed dates when parts must fit together; the content flexes, the date does not."],
+["Set-based thinking","Explore several solutions in parallel and narrow down late instead of locking one early."],
+["Continuous improvement","Teams keep improving how they work as part of the job."],
+["Lean and agile together","Toyota Connected treats them as different but complementary."]]},
+{t:"list",h:"Adoption strategy",i:[
+["Start from principles, not tools","Build on lean thinking, then choose agile methods that serve it."],
+["Fixed rhythm, flexible content","Anchor the plan on integration dates and adapt scope inside them."],
+["Delay irreversible choices","Keep alternatives alive until evidence settles the decision."],
+["Separate contexts","Use manufacturing-style flow where it fits and Scrum where product discovery needs short feedback loops."]]},
+{t:"dd",h:"Dos and don’ts",dos:[
+["Limit work in progress","Pull new work only when there is capacity, so flow stays smooth."],
+["Give one person end-to-end accountability","A chief engineer prevents decisions from being diluted."],
+["Fix integration dates","Flex the scope, not the date."],
+["Keep options open","Narrow the choices as evidence arrives."],
+["Combine lean and agile","Use each for what it does best."]],
+donts:[
+["Copy the tools without the thinking","The Lean Enterprise Institute warns that concurrent engineering is the most misinterpreted Toyota practice."],
+["Treat lean and agile as the same thing","Toyota Connected’s agile lead stresses they are different."],
+["Use the kanban metaphor loosely for development","The analogy helps, but it is not a full method."],
+["Assume this is current Toyota-wide software policy","Sources are about specific units and some are dated."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Make work visible and limit it","Use a board with a limit on work in progress."],
+["Name a single accountable lead","For each product or major deliverable."],
+["Set integration dates","Agree when the parts must fit together, then protect them."],
+["Review how you work","End each cycle by changing one thing about the process."]]},
+{t:"note",h:"Source quality",x:"Most sources are secondary articles and conference material rather than Toyota publications. The Toyota Connected material reflects one business unit."},
+{t:"links",h:"Sources",i:[
+["Toyota Production System (Toyota Europe)","Toyota’s own overview.","https://www.toyota-europe.com/about-us/toyota-vision-and-philosophy/toyota-production-system"],
+["Toyota’s principles of set-based concurrent engineering","MIT Sloan Management Review.","https://sloanreview.mit.edu/article/toyotas-principles-of-setbased-concurrent-engineering"],
+["Lean development (Lean Enterprise Institute)","Toyota’s product development system.","https://www.lean.org/wp-content/uploads/2008/10/lean-development.pdf"],
+["Agile at Toyota Connected (InfoQ)","Scrum The Toyota Way.","https://www.infoq.com/news/2019/01/agile-toyota-connected"],
+["Scrum the Toyota Way (InfoQ)","Article on combining Scrum and lean.","https://www.infoq.com/articles/scrum-the-toyota-way"]]}
+],related:["kanban","scrum","kpi"]},
+
+"bp-atlassian":{group:"bestpractices",title:"Atlassian",tagline:"The Team Playbook: project posters, DACI decisions and health checks, with Scrum and Kanban supported in Jira.",
+bp:{hue:"#0052CC",mark:"At",headline:"Plays that teams adapt, not one fixed method",fw:{"Scrum / Agile":1,"Kanban / flow":1,"SAFe / scaling":1}},
+sections:[
+{t:"p",x:"Atlassian publishes the Team Playbook, a free library of “plays” it uses with its own teams: a project poster, a kick-off, DACI decision roles, a team health monitor, and goals, signals and measures. Its products support Scrum, Kanban and scaling approaches such as SAFe for customers. Atlassian says it is scaling agile itself, but we found no detailed account of which scaling framework, if any, it follows internally."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework or play","How Atlassian uses it","Evidence"],rows:[
+["Project poster and kick-off","A living one-page definition of the problem, goals and plan, completed before a kick-off so everyone has the same context.","Atlassian Team Playbook"],
+["DACI","Roles for significant decisions: driver, approver, contributor, informed.","Atlassian Team Playbook"],
+["Health monitor","A periodic team health check, recommended quarterly, with follow-up checkpoints.","Atlassian Team Playbook"],
+["Goals, signals and measures","Agree goals and metrics before a project starts and put them on the poster.","Atlassian Team Playbook"],
+["Scrum and Kanban","Supported in Jira and described in Atlassian’s agile guidance.","Atlassian product and guidance pages (vendor)"],
+["SAFe and other scaling","Atlassian says there is no one right way to scale agile; its SAFe whitepaper, written with cPrime, is customer-facing.","Atlassian guidance and whitepaper"]]},
+{t:"list",h:"Project management practices",i:[
+["Shared context first","Complete the project poster before kick-off so the meeting is spent deciding."],
+["Clear decision roles","One driver and one approver per decision, which Atlassian teams found made a big difference."],
+["Check team health regularly","Rate the team against a set of attributes, pick the top few, agree actions."],
+["Measure from the start","Set goals and measures before the project begins."],
+["One system of work","Business and technology teams share one platform for work and goals."]]},
+{t:"list",h:"Adoption strategy",i:[
+["Offer plays, not a mandate","Teams pick the plays that address the problem they have."],
+["Keep the method light","Use the poster and DACI to create alignment, then let teams choose Scrum, Kanban or something else."],
+["Scale by learning","Atlassian shares what is and isn’t working as it scales agile."],
+["Follow up on every check","Health monitor results lead to short checkpoints, not a one-off survey."]]},
+{t:"dd",h:"Dos and don’ts",dos:[
+["Fill in the project poster before kick-off","Everyone arrives with the same context."],
+["Name one driver and one approver","Make decision ownership explicit."],
+["Run the health monitor regularly","Quarterly is the recommended rhythm."],
+["Set goals and measures at the start","Put them where stakeholders can see them."],
+["Treat the poster as living","Update it as you learn."]],
+donts:[
+["Treat plays as a fixed process","They are starting points to adapt to the team."],
+["Run a health check without follow-up","Without actions, it erodes trust."],
+["Choose a scaling framework by name alone","Atlassian says there’s no single right way to scale."],
+["Leave decision roles vague","Unclear ownership is where decisions stall."],
+["Take vendor claims as proof","Product pages are marketing."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Draft the poster","Problem, goals, scope, risks and how success will be measured."],
+["Assign DACI roles","Do it for the three biggest decisions."],
+["Hold the kick-off","Spend the time on open questions and red or yellow items."],
+["Schedule a health check","Add a quarterly slot and a checkpoint two weeks after."]]},
+{t:"note",h:"Source quality",x:"The Team Playbook is first-party. Statements about Scrum, Kanban and SAFe come from product and marketing pages, and how Atlassian itself scales agile is not documented in detail."},
+{t:"links",h:"Sources",i:[
+["Atlassian Team Playbook","Why the playbook exists.","https://www.atlassian.com/team-playbook/why"],
+["IT Project Poster","The one-page project definition.","https://www.atlassian.com/team-playbook/plays/it-project-poster"],
+["IT Project Kick-off","Running the kick-off, including DACI.","https://www.atlassian.com/team-playbook/plays/it-project-kick-off"],
+["Health Monitor","The team health check.","https://www.atlassian.com/team-playbook/health-monitor"],
+["Goals, signals and measures","Setting measures up front.","https://www.atlassian.com/team-playbook/plays/goals-signals-measures"],
+["Ways to scale agile","Atlassian’s overview of scaling approaches.","https://www.atlassian.com/agile/ways-to-scale-agile"]]}
+],related:["scrum","kanban","raci","rapid"]}
+});
+
+/* ---------- Strategy, dos and don'ts for the original organizations ---------- */
+const BP_EXTRA={
+"bp-microsoft":{strat:[["Standardize the cadence first","Teams share a sprint length before the organization scales."],["Layer the plans","Sprint, plan, season and year plans stay connected."],["Extend agile into DevOps","When a product becomes a service, add live-site learning."],["Self-managed within a rhythm","Autonomy for teams, consistency in the calendar."]],
+ dos:[["Align teams on one sprint length","Makes cross-team planning simpler."],["Plan at several horizons","Link the sprint to the strategy."],["Feed production data back","Add findings to the backlog."],["Let teams own their backlog","Managers set direction, not tasks."]],
+ donts:[["Treat the 2015–2018 pattern as current","Check what has changed."],["Add process before aligning cadence","Scaling needs a common rhythm first."],["Stop at the sprint","Ship and learn from the live service."],["Micromanage tasks","It defeats self-management."]]},
+"bp-google":{strat:[["Goals by OKR, method by team","The company sets goals; teams pick how to deliver."],["Settle speed versus reliability with a budget","An error budget replaces argument."],["Learn through blameless postmortems","Fix systems, not people."],["Measure delivery with DORA","Use four measures to see trends."]],
+ dos:[["Keep OKRs few and ambitious","Three to five per team."],["Publish them openly","Visibility aligns teams."],["Agree error-budget rules in advance","So the response is automatic."],["Write blameless postmortems with owned actions","Include dates."]],
+ donts:[["Tie OKRs to pay or ratings","It encourages safe goals."],["Assume a Scrum mandate","None is documented; teams choose."],["Turn DORA measures into individual targets","Our reading: use them as team signals."],["Assign blame in postmortems","It stops people reporting problems."]]},
+"bp-amazon":{strat:[["Organize by ownership, not by project","Small teams own a service over time."],["Start from the customer announcement","Working backwards before building."],["Match decision depth to reversibility","Fast for reversible, careful for irreversible."],["Build it, run it","Teams operate what they launch."]],
+ dos:[["Name a single owner","One leader whose focus is the goal."],["Write the narrative or announcement first","Test the idea on paper."],["Right-size the team","Small enough to stay close."],["Label decisions as reversible or not","Set review depth accordingly."]],
+ donts:[["Copy the model wholesale","AWS says it may not suit every unit."],["Build before the announcement reads well","The idea may not be ready."],["Rush irreversible decisions","Slow down when you can’t undo."],["Assume Amazon uses PMBOK or Scrum","No public evidence either way."]]},
+"bp-deloitte":{strat:[["Choose the method by outcome","Benefits first, method second."],["Assure, not only report","Independent checks on plans, risks and readiness."],["Let the PMO support","Planning discipline without paperwork."],["Mix methods where parts differ","Hybrid is a deliberate choice."]],
+ dos:[["State the benefits first","Write how they will be measured."],["Adapt assurance for agile work","Check outcomes, not just documents."],["Check outcomes regularly","Whatever the method."],["Combine methods where work differs","Predictive for stable parts, agile for uncertain ones."]],
+ donts:[["Pick agile or waterfall by preference","Let the outcome decide."],["Rely on status colours without evidence","Back them with data."],["Let the PMO become paperwork","It should support delivery."],["Treat this as a certifiable framework","It is a set of themes."]]},
+"bp-adobe":{strat:[["Let teams choose the method","Standardize reporting, not practice."],["Scale only when needed","Add program layers late."],["One system of work","Capture intake, resourcing and tracking together."]],
+ dos:[["Separate method from reporting","Common measures over diverse methods."],["Add scaling layers late","When coordination is the bottleneck."],["Capture all work in one intake","Avoid hidden demand."],["Show capacity next to demand","Spot overload early."]],
+ donts:[["Adopt SAFe because it’s popular","Adobe says smaller teams may prefer lighter options."],["Force one method on every team","Teams differ."],["Trust vendor figures unchecked","They come from marketing."],["Assume Adobe’s internal practice from product pages","It isn’t documented."]]},
+"bp-accenture":{strat:[["One scaling framework","SAFe gives shared language across sites."],["Automate the pipeline","Shorten feedback loops."],["Distributed agile with working agreements","Plan for time zones."]],
+ dos:[["Train all teams together","Shared language from day one."],["Automate before adding teams","The pipeline is the foundation."],["Synchronize cadence across sites","Plan together."],["Share dashboards","Visibility without extra reports."]],
+ donts:[["Add teams before the pipeline is automated","Manual steps multiply."],["Scale without a common language","Terms will drift."],["Treat vendor case studies as proof","They are not independent."],["Ignore time zones","Agree overlap hours."]]},
+"bp-ibm":{strat:[["Start from the user outcome","A Hill names who benefits and how."],["Deliver in small playbacks","Show working software often."],["One team from idea to operation","The Garage Method covers the full life."],["Use SAFe tooling where scale demands","Planning at scale, not by default."]],
+ dos:[["Write a Hill before planning","Anchor on the outcome."],["Schedule regular playbacks","Early feedback."],["Recruit sponsor users","Give them a standing voice."],["Release a minimum viable product","Learn and iterate."]],
+ donts:[["Plan features without the user outcome","You risk building the wrong thing."],["Present slides instead of working software","Show real use."],["Assume IBM’s internal PMO practice","Not documented in our sources."],["Adopt SAFe tooling before the need","Keep it light."]]},
+"bp-nasa":{strat:[["Gate the life cycle","Key Decision Points with decision authorities."],["Tailor with approval","Requirements flex formally, not informally."],["Allow agile inside the gates","Software teams still produce required outputs."],["Manage risk continuously","Not only at the start."]],
+ dos:[["Define decision criteria in advance","Reviews then decide on evidence."],["Tailor formally and get approval","Document what changed."],["Produce required outputs even when using agile","Reviews depend on them."],["Capture lessons learned","Publish them for reuse."]],
+ donts:[["Skip reviews without approval","Only the decision authority can approve it."],["Treat risk as a one-off exercise","It needs continuous attention."],["Assume a PMBOK mapping","No source confirms it."],["Rely on an expired directive","Check the current revision."]]},
+"bp-capgemini":{strat:[["Align stakeholders first","DesignShops and Discovery Days."],["Product-aligned pods","Teams around a product, not a function."],["A shared platform team","Tooling and coordination shared across pods."]],
+ dos:[["Invite the decision makers","Include those affected too."],["Group people by product","Cross-functional pods."],["Share tooling in a small team","Avoid duplication."],["Leave workshops with owners and dates","Turn alignment into action."]],
+ donts:[["Treat workshop output as a plan without owners","Alignment isn’t delivery."],["Organize pods by function","It recreates handoffs."],["Quote self-reported metrics as proof","They are unverified."],["Confuse ASE with the delivery model","ASE aligns; ADC delivers."]]}
+};
+Object.entries(BP_EXTRA).forEach(([id,x])=>{
+  const secs=TOPICS[id].sections;const at=secs.findIndex(s=>s.t==="steps");
+  secs.splice(at,0,{t:"list",h:"Adoption strategy",i:x.strat},{t:"dd",h:"Dos and don’ts",dos:x.dos,donts:x.donts});
+});
+TOPICS["bp-pmalliance"].sections.splice(1,0,{t:"p",x:"Once a source is available this page will follow the same layout as the others: frameworks adopted, strategy, dos and don’ts, and sources."});
+
+{const pm=TOPICS["bp-pmalliance"];delete TOPICS["bp-pmalliance"];TOPICS["bp-pmalliance"]=pm;}

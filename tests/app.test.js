@@ -108,16 +108,18 @@ test("cross-references are symmetric", async () => {
 test("best practices: ten organizations, filterable overview, sourced pages, TOGAF title", async () => {
   const { w, d, data, errors } = await loadApp("practices");
   const ids = Object.keys(data("TOPICS")).filter(k => data("TOPICS")[k].group === "bestpractices");
-  assert.equal(ids.length, 10);
-  assert.equal(d.querySelectorAll(".bp-card").length, 10);
+  assert.equal(ids.length, 12);
+  assert.equal(d.querySelectorAll(".bp-card").length, 12);
   d.querySelector('.theme[data-theme="SAFe / scaling"]').click();
   const n = d.querySelectorAll(".bp-card").length;
-  assert.ok(n > 0 && n < 10);
+  assert.ok(n > 0 && n < 12);
   for (const id of ids) {
     await go(w, id);
     const t = data("TOPICS")[id];
     if (id !== "bp-pmalliance") assert.ok(t.sections.some(s => s.t === "links" && s.i.length), `${id} has no sources`); // placeholder until a source is supplied
     assert.ok(d.querySelector(".src-list a, .note"), `${id} renders`);
+    if (id !== "bp-pmalliance") assert.ok(t.sections.some(s => s.t === "dd" && s.dos.length >= 3 && s.donts.length >= 3), `${id} lacks dos and don'ts`);
+    if (id !== "bp-pmalliance") assert.ok(t.sections.some(s => s.h === "Adoption strategy"), `${id} lacks strategy`);
   }
   assert.equal(data("TOPICS").togaf.title, "TOGAF®");
   assert.deepEqual(errors, []);

@@ -346,3 +346,18 @@ main:has(.mm-wrap){padding:16px clamp(12px,2vw,24px) 24px}
   .matrix td{display:flex;align-items:center;justify-content:space-between;text-align:left}
   .matrix td[data-label]::before{display:inline}
 }
+
+/* Dos and don'ts */
+.dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.dd-col{border-radius:20px;padding:16px 18px}
+.dd-col.do{background:color-mix(in srgb,var(--ok) 11%,var(--surface))}
+.dd-col.dont{background:color-mix(in srgb,var(--danger) 10%,var(--surface))}
+.dd-col h3{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:1rem;font-weight:500}
+.dd-col.do h3{color:var(--ok)}
+.dd-col.dont h3{color:var(--danger)}
+.dd-col ul{list-style:none;margin:0;padding:0}
+.dd-col li{padding:8px 0;border-top:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.dd-col li:first-child{border-top:0}
+.dd-col strong{display:block;font-weight:500}
+.dd-col span{color:var(--muted);font-size:.9rem}
+.dd-note{margin:8px 0 0;color:var(--muted);font-size:.82rem}

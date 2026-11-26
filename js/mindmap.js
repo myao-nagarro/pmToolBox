@@ -39,6 +39,7 @@ Object.entries(TOPICS).forEach(([tid,t])=>{
     let items=[];
     if(s.i)items=s.i;
     else if(s.t==="table")items=s.rows.map(r=>[r[0],s.head.slice(1).map((h,k)=>r[k+1]?h+": "+r[k+1]:"").filter(Boolean).join(". ")]);
+    else if(s.t==="dd")items=s.dos.map(([a,b])=>["Do: "+a,b]).concat(s.donts.map(([a,b])=>["Don’t: "+a,b]));
     else if(s.t==="pi")items=QUADS.map(q=>[q.name,q.desc]);
     else if(s.t==="gloss")items=GLOSSARY[s.fw].terms.map(g=>[g[0],g[1]]);
     else if(s.t==="rolemap")items=s.rows.map(r=>[r[0],r[1]+" "+s.cols.map((c,k)=>c+": "+r[k+2].replace(/^≈ /,"≈")).join(". ")+"."]);
