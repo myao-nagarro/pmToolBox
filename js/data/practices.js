@@ -8,7 +8,7 @@ const BP_FW = ["Scrum / Agile","SAFe / scaling","Kanban / flow","Stage-gate / pr
 Object.assign(TOPICS, {
 
 "bp-microsoft":{group:"bestpractices",title:"Microsoft",tagline:"Scrum in 3-week sprints, a layered planning cadence and DevOps for services.",
-bp:{hue:"#0B6BCB",mark:"Ms",headline:"Scrum for teams, DevOps for the service",fw:{"Scrum / Agile":2,"Kanban / flow":2,"DevOps / SRE":2}},
+bp:{logo:"microsoft",hue:"#0B6BCB",mark:"Ms",headline:"Scrum for teams, DevOps for the service",fw:{"Scrum / Agile":2,"Kanban / flow":2,"DevOps / SRE":2}},
 sections:[
 {t:"p",x:"Microsoft’s Developer Division has described its own journey in detail. It adopted Scrum at team level with 3-week sprints and self-managed teams, then extended into DevOps when its products moved to a cloud service. Azure DevOps and Visual Studio teams have been described as sharing the same sprint cadence."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Microsoft uses it","Evidence"],rows:[
@@ -43,7 +43,7 @@ sections:[
 ],related:["scrum","kanban","pmo-governance"]},
 
 "bp-google":{group:"bestpractices",title:"Google",tagline:"OKRs for goals and SRE for reliability; teams pick their own delivery method.",
-bp:{hue:"#1A8F5B",mark:"G",headline:"Goals by OKR, reliability by SRE",fw:{"OKRs":2,"DevOps / SRE":2}},
+bp:{logo:"google",hue:"#1A8F5B",mark:"G",headline:"Goals by OKR, reliability by SRE",fw:{"OKRs":2,"DevOps / SRE":2}},
 sections:[
 {t:"p",x:"Google is best known for OKRs, which it uses to set and align goals across teams, and for Site Reliability Engineering, which manages the balance between delivery speed and reliability. We found no authoritative source saying Google mandates Scrum or another delivery framework; commentary describes a lightweight mix that teams adapt themselves, but that is secondary."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Google uses it","Evidence"],rows:[
@@ -71,7 +71,7 @@ sections:[
 ],related:["okr","kpi","risk","kanban"]},
 
 "bp-amazon":{group:"bestpractices",title:"Amazon",tagline:"Its own mechanisms rather than a named framework: small owning teams and working backwards.",
-bp:{hue:"#C26A00",mark:"A",headline:"Small owners, written plans, run what you build",fw:{"Scrum / Agile":1,"DevOps / SRE":2}},
+bp:{logo:"amazon",hue:"#C26A00",mark:"A",headline:"Small owners, written plans, run what you build",fw:{"Scrum / Agile":1,"DevOps / SRE":2}},
 sections:[
 {t:"p",x:"Amazon’s public material describes its own mechanisms rather than adopting a named framework. Work is organized into small two-pizza teams, often led by a single-threaded owner, and new ideas start by working backwards from the customer. AWS presents this as an agile, DevOps-style model. We found no source on Amazon using PMBOK, PRINCE2 or a formal Scrum standard."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Amazon works","Evidence"],rows:[
@@ -126,7 +126,7 @@ sections:[
 ],related:["pmbok","prince2","pmo-governance","business-justification"]},
 
 "bp-adobe":{group:"bestpractices",title:"Adobe",tagline:"Presents Scrum, SAFe and Kanban as options, supported by its Workfront tool.",
-bp:{hue:"#C4262E",mark:"Ad",headline:"Frameworks as options, one system of work",fw:{"Scrum / Agile":1,"SAFe / scaling":1,"Kanban / flow":1,"Hybrid":1}},
+bp:{logo:"adobe",hue:"#C4262E",mark:"Ad",headline:"Frameworks as options, one system of work",fw:{"Scrum / Agile":1,"SAFe / scaling":1,"Kanban / flow":1,"Hybrid":1}},
 sections:[
 {t:"p",x:"Adobe’s verified public material is about how organizations can run projects, mainly through its Workfront work-management product. It presents Scrum, Kanban, hybrid methods and scaling frameworks such as SAFe, LeSS and Scrum at Scale as options. We found no authoritative first-party account of how Adobe itself runs its internal projects; one third-party blog says it adopted Scrum and customized SAFe and Nexus, but it gives no citations."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","What Adobe’s material says","Evidence"],rows:[
@@ -150,7 +150,7 @@ sections:[
 ],related:["scrum","safe","kanban"]},
 
 "bp-accenture":{group:"bestpractices",title:"Accenture",tagline:"SAFe-based Agile and DevOps across its global delivery network, with automation.",
-bp:{hue:"#7B3FD0",mark:"Ac",headline:"One scaling framework, many locations",fw:{"Scrum / Agile":2,"SAFe / scaling":2,"DevOps / SRE":2}},
+bp:{logo:"accenture",hue:"#7B3FD0",mark:"Ac",headline:"One scaling framework, many locations",fw:{"Scrum / Agile":2,"SAFe / scaling":2,"DevOps / SRE":2}},
 sections:[
 {t:"p",x:"Accenture has described adopting Agile and DevOps at scale across its Global Delivery Network using SAFe, with a common toolchain. Its myWizard platform is presented as automation that supports distributed agile teams across the software lifecycle."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Accenture uses it","Evidence"],rows:[
@@ -173,7 +173,7 @@ sections:[
 ],related:["safe","scrum"]},
 
 "bp-ibm":{group:"bestpractices",title:"IBM",tagline:"The Garage Method blends design thinking, agile and DevOps; SAFe supported in its tools.",
-bp:{hue:"#0F62FE",mark:"IBM",headline:"Design thinking plus agile plus DevOps",fw:{"Scrum / Agile":2,"SAFe / scaling":1,"DevOps / SRE":2}},
+bp:{logo:"ibm",hue:"#0F62FE",mark:"IBM",headline:"Design thinking plus agile plus DevOps",fw:{"Scrum / Agile":2,"SAFe / scaling":1,"DevOps / SRE":2}},
 sections:[
 {t:"p",x:"IBM publishes the IBM Garage Method, which combines design thinking, agile and DevOps, and Enterprise Design Thinking with Hills, Playbacks and Sponsor Users. Its engineering tools (Engineering Lifecycle Management and Targetprocess) include support for planning with SAFe. We found nothing on how IBM’s own internal project office relates to PMI standards."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How IBM uses it","Evidence"],rows:[
@@ -199,7 +199,7 @@ sections:[
 ],related:["scrum","safe","okr"]},
 
 "bp-nasa":{group:"bestpractices",title:"NASA",tagline:"A gated life cycle with formal reviews, tailored per project; agile allowed within it.",
-bp:{hue:"#1F3A93",mark:"NASA",headline:"Gates and tailoring, with agile inside",fw:{"Stage-gate / predictive":2,"Scrum / Agile":1,"Hybrid":1}},
+bp:{logo:"nasa",hue:"#1F3A93",mark:"NASA",headline:"Gates and tailoring, with agile inside",fw:{"Stage-gate / predictive":2,"Scrum / Agile":1,"Hybrid":1}},
 sections:[
 {t:"p",x:"NASA’s space flight programs and projects follow NPR 7120.5, a life cycle with phases, Key Decision Points and formal reviews. The requirements can be tailored with approval, and NASA material describes agile software work running inside this gated life cycle, with software governed by NPR 7150.2. We found no source mapping NASA’s approach to PMI’s PMBOK."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How NASA uses it","Evidence"],rows:[
@@ -249,21 +249,14 @@ sections:[
 {t:"links",h:"Sources",i:[
 ["Accelerated Solutions Environment","DesignShops and Discovery Days.","https://www.capgemini.com/in-en/solutions/accelerated-solution-environment/"],
 ["Increasing velocity with the Accelerated Delivery Center","Delivery model.","https://www.capgemini.com/ca-en/insights/expert-perspectives/increasing-velocity-with-the-accelerated-delivery-center/"]]}
-],related:["scrum","safe","strategic-cascade"]},
-
-"bp-pmalliance":{group:"bestpractices",title:"PMAlliance",tagline:"Placeholder: no authoritative public project management material found yet.",
-bp:{hue:"#8A6200",mark:"PM",headline:"Needs your source",fw:{}},
-sections:[
-{t:"p",x:"We could not identify a published set of project management practices or framework adoption from an organization called PMAlliance. Rather than invent content, this page is a placeholder."},
-{t:"note",h:"What we need",x:"Please share the organization’s website or documents, or confirm whether another name was meant, such as PMI. The page can then be completed with sourced practices."}
-],related:["pmbok","risk","raci"]}
+],related:["scrum","safe","strategic-cascade"]}
 });
 
 /* ---------- Added organizations ---------- */
 Object.assign(TOPICS, {
 
 "bp-toyota":{group:"bestpractices",title:"Toyota",tagline:"Lean from the Toyota Production System, adapted to product development and agile software.",
-bp:{hue:"#B8431B",mark:"T",headline:"Lean first, then agile where it fits",fw:{"Scrum / Agile":2,"Kanban / flow":2,"Stage-gate / predictive":1}},
+bp:{logo:"toyota",hue:"#B8431B",mark:"T",headline:"Lean first, then agile where it fits",fw:{"Scrum / Agile":2,"Kanban / flow":2,"Stage-gate / predictive":1}},
 sections:[
 {t:"p",x:"Toyota is the origin of the lean and kanban ideas that many project frameworks borrow. The Toyota Production System uses just-in-time flow, with kanban as the tool that lets each process take what it needs from the one before. Its product development system adds a chief engineer with end-to-end responsibility and set-based concurrent engineering. Toyota Connected, its software arm, combines Scrum with lean thinking, which it calls “Scrum The Toyota Way”."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Toyota uses it","Evidence"],rows:[
@@ -309,7 +302,7 @@ donts:[
 ],related:["kanban","scrum","kpi"]},
 
 "bp-atlassian":{group:"bestpractices",title:"Atlassian",tagline:"The Team Playbook: project posters, DACI decisions and health checks, with Scrum and Kanban supported in Jira.",
-bp:{hue:"#0052CC",mark:"At",headline:"Plays that teams adapt, not one fixed method",fw:{"Scrum / Agile":1,"Kanban / flow":1,"SAFe / scaling":1}},
+bp:{logo:"atlassian",hue:"#0052CC",mark:"At",headline:"Plays that teams adapt, not one fixed method",fw:{"Scrum / Agile":1,"Kanban / flow":1,"SAFe / scaling":1}},
 sections:[
 {t:"p",x:"Atlassian publishes the Team Playbook, a free library of “plays” it uses with its own teams: a project poster, a kick-off, DACI decision roles, a team health monitor, and goals, signals and measures. Its products support Scrum, Kanban and scaling approaches such as SAFe for customers. Atlassian says it is scaling agile itself, but we found no detailed account of which scaling framework, if any, it follows internally."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework or play","How Atlassian uses it","Evidence"],rows:[
@@ -392,6 +385,4 @@ Object.entries(BP_EXTRA).forEach(([id,x])=>{
   const secs=TOPICS[id].sections;const at=secs.findIndex(s=>s.t==="steps");
   secs.splice(at,0,{t:"list",h:"Adoption strategy",i:x.strat},{t:"dd",h:"Dos and don’ts",dos:x.dos,donts:x.donts});
 });
-TOPICS["bp-pmalliance"].sections.splice(1,0,{t:"p",x:"Once a source is available this page will follow the same layout as the others: frameworks adopted, strategy, dos and don’ts, and sources."});
 
-{const pm=TOPICS["bp-pmalliance"];delete TOPICS["bp-pmalliance"];TOPICS["bp-pmalliance"]=pm;}

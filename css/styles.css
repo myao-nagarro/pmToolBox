@@ -361,3 +361,8 @@ main:has(.mm-wrap){padding:16px clamp(12px,2vw,24px) 24px}
 .dd-col strong{display:block;font-weight:500}
 .dd-col span{color:var(--muted);font-size:.9rem}
 .dd-note{margin:8px 0 0;color:var(--muted);font-size:.82rem}
+
+/* Brand glyphs */
+.org-mark.has-logo{background:var(--gc)}
+.org-mark svg{width:58%;height:58%;fill:#fff}
+.org-mark.sm svg{width:62%;height:62%}

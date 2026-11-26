@@ -38,7 +38,7 @@ function renderTopic(id){
   const prev=peers[pi-1],next=peers[pi+1];
   const hue=t.bp?`--gc:${t.bp.hue};`:`--gc:var(--c-${t.group});`;
   main.innerHTML = `<article class="topic wrap" style="${hue}">
-    <header class="topic-head">${t.bp?`<span class="org-mark lg" aria-hidden="true">${esc(t.bp.mark)}</span>`:""}<span class="tab">${icon(t.group)}${esc(GN[t.group])}</span><h1>${esc(t.title)}</h1><p class="tagline">${esc(t.tagline)}</p>${t.bp?`<p class="chips-row">${bpFw(t).map(x=>`<span class="chip tonal">${esc(x)}</span>`).join("")}</p>`:""}<p class="topic-actions"><a class="btn small tonal" href="#map" data-mm="t:${id}">Show in mind map</a>${t.bp?`<a class="btn small outlined" href="#practices">All best practices</a>`:""}</p></header>
+    <header class="topic-head">${t.bp?`${orgMark(t,"lg")}`:""}<span class="tab">${icon(t.group)}${esc(GN[t.group])}</span><h1>${esc(t.title)}</h1><p class="tagline">${esc(t.tagline)}</p>${t.bp?`<p class="chips-row">${bpFw(t).map(x=>`<span class="chip tonal">${esc(x)}</span>`).join("")}</p>`:""}<p class="topic-actions"><a class="btn small tonal" href="#map" data-mm="t:${id}">Show in mind map</a>${t.bp?`<a class="btn small outlined" href="#practices">All best practices</a>`:""}</p></header>
     <nav class="toc" aria-label="On this page"></nav>
     ${t.sections.map(sec).join("")}
     ${rel.length?`<section class="block related-block"><h2>Related topics</h2><div class="related">${rel.map(r=>`<a href="#${r}">${esc(TOPICS[r].title)}</a>`).join("")}</div></section>`:""}
@@ -60,13 +60,18 @@ function buildToc(){
   }
 }
 
+/** Organization tile: brand glyph when we have one, otherwise a lettered mark. */
+function orgMark(t,cls=""){
+  const g=t.bp.logo&&BP_LOGO[t.bp.logo];
+  return `<span class="org-mark ${cls}${g?" has-logo":""}" role="img" aria-label="${esc(t.title)} logo">${g?`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${g}"/></svg>`:esc(t.bp.mark)}</span>`;
+}
 /* Best practices overview: who adopts which PM framework, with a filterable card list */
 let bpTheme="all";
 const bpIds=()=>Object.keys(TOPICS).filter(k=>TOPICS[k].group==="bestpractices");
 const bpFw=t=>Object.keys(t.bp.fw).filter(k=>t.bp.fw[k]);
 function bpMatrix(ids){
   const dot=v=>v===2?`<span class="dot full" title="Documented as used"><span class="sr">Documented as used</span></span>`:v===1?`<span class="dot half" title="Supported, optional or partly documented"><span class="sr">Supported or partly documented</span></span>`:`<span class="dot none"><span class="sr">No public evidence</span></span>`;
-  return `<div class="tbl-wrap"><table class="matrix"><thead><tr><th scope="col">Organization</th>${BP_FW.map(f=>`<th scope="col">${esc(f)}</th>`).join("")}</tr></thead><tbody>${ids.map(i=>{const t=TOPICS[i];return `<tr style="--gc:${t.bp.hue}"><th scope="row"><a href="#${i}"><span class="org-mark sm" aria-hidden="true">${esc(t.bp.mark)}</span>${esc(t.title)}</a></th>${BP_FW.map(f=>`<td data-label="${esc(f)}">${dot(t.bp.fw[f]||0)}</td>`).join("")}</tr>`;}).join("")}</tbody></table></div>
+  return `<div class="tbl-wrap"><table class="matrix"><thead><tr><th scope="col">Organization</th>${BP_FW.map(f=>`<th scope="col">${esc(f)}</th>`).join("")}</tr></thead><tbody>${ids.map(i=>{const t=TOPICS[i];return `<tr style="--gc:${t.bp.hue}"><th scope="row"><a href="#${i}">${orgMark(t,"sm")}${esc(t.title)}</a></th>${BP_FW.map(f=>`<td data-label="${esc(f)}">${dot(t.bp.fw[f]||0)}</td>`).join("")}</tr>`;}).join("")}</tbody></table></div>
   <p class="legend"><span><span class="dot full"></span> documented as used</span><span><span class="dot half"></span> supported, optional, tailored or partly documented</span><span><span class="dot none"></span> no public evidence found</span></p>`;
 }
 function renderPractices(){
@@ -78,13 +83,13 @@ function renderPractices(){
   <div class="themes" role="group" aria-label="Filter by framework">${BP_FW.map(f=>{const n=ids.filter(i=>TOPICS[i].bp.fw[f]).length;return `<button class="theme" data-theme="${esc(f)}" aria-pressed="false"><span>${esc(f)}</span><b>${n}</b></button>`;}).join("")}</div>
   <div class="filter-bar"><button class="chip filter" data-theme="all" aria-pressed="true">All organizations (${ids.length})</button><span id="bpCount" class="muted" aria-live="polite"></span></div>
   <div class="bp-grid" id="bpGrid"></div>
-  <p class="foot">Summaries paraphrase public material and are not endorsed by the organizations. Figures that organizations report about themselves are self-reported. Always check the linked sources.</p></div>`;
+  <p class="foot">Summaries paraphrase public material and are not endorsed by the organizations. Figures that organizations report about themselves are self-reported. Always check the linked sources. Logos belong to their owners and are shown only to identify each organization (glyphs from Simple Icons; Capgemini and Deloitte have none in that set, so they show a letter).</p></div>`;
   bpTheme="all";
   drawPractices();
 }
 function drawPractices(){
   const ids=bpIds().filter(i=>bpTheme==="all"||TOPICS[i].bp.fw[bpTheme]);
-  $("#bpGrid").innerHTML=ids.map(i=>{const t=TOPICS[i];const f=bpFw(t);return `<a class="bp-card" href="#${i}" style="--gc:${t.bp.hue}"><span class="org-mark" aria-hidden="true">${esc(t.bp.mark)}</span><h2>${esc(t.title)}</h2><p class="bp-head">${esc(t.bp.headline)}</p><p>${esc(t.tagline)}</p><span class="chips-row">${f.length?f.map(x=>`<span class="chip tonal${x===bpTheme?" on":""}">${esc(x)}</span>`).join(""):`<span class="chip tonal">Source needed</span>`}</span></a>`;}).join("");
+  $("#bpGrid").innerHTML=ids.map(i=>{const t=TOPICS[i];const f=bpFw(t);return `<a class="bp-card" href="#${i}" style="--gc:${t.bp.hue}">${orgMark(t)}<h2>${esc(t.title)}</h2><p class="bp-head">${esc(t.bp.headline)}</p><p>${esc(t.tagline)}</p><span class="chips-row">${f.length?f.map(x=>`<span class="chip tonal${x===bpTheme?" on":""}">${esc(x)}</span>`).join(""):`<span class="chip tonal">Source needed</span>`}</span></a>`;}).join("");
   $("#bpCount").textContent=bpTheme==="all"?"":`Showing ${ids.length} using “${bpTheme}”`;
   main.querySelectorAll("[data-theme]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.theme===bpTheme)));
 }
