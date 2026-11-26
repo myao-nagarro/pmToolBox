@@ -19,12 +19,25 @@ const GICON={
 };
 const icon=(g,cls="")=>`<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${GICON[g]||GICON.frameworks}"/></svg>`;
 function buildSide(){
-  side.innerHTML = GROUPS.map(g=>`<section class="grp" style="--gc:var(--c-${g.id})"><h2>${icon(g.id)}${esc(g.name)}</h2><ul>${
+  side.innerHTML = GROUPS.map(g=>`<section class="grp" style="--gc:var(--c-${g.id})"><h2><button class="grp-btn" aria-expanded="false" aria-controls="grp-${g.id}">${icon(g.id)}<span>${esc(g.name)}</span><svg class="ic chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg></button></h2><ul id="grp-${g.id}" hidden>${
     Object.entries(TOPICS).filter(([,t])=>t.group===g.id).map(([id,t])=>`<li><a href="#${id}" data-nav="${id}">${esc(t.title)}</a></li>`).join("")
   }</ul></section>`).join("") + `<a class="side-link" href="#practices" data-nav="practices">Best practices overview<small>How leading organizations run projects</small></a><a class="side-link" href="#map" data-nav="map" data-mm="root">Mind map<small>Navigate every concept and its links</small></a><a class="side-link" href="#glossary" data-nav="glossary">Glossary<small>Key terms per framework, with sources</small></a>`;
 }
 buildSide();
-function markActive(h){document.querySelectorAll("[data-nav]").forEach(a=>{if(a.dataset.nav===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});}
+/** Accordion: only one category is open at a time. */
+function openGroup(sec){
+  side.querySelectorAll(".grp").forEach(g=>{const o=g===sec,b=g.querySelector(".grp-btn");b.setAttribute("aria-expanded",String(o));g.querySelector("ul").hidden=!o;});
+}
+side.addEventListener("click",e=>{const b=e.target.closest(".grp-btn");if(!b)return;const sec=b.closest(".grp");openGroup(b.getAttribute("aria-expanded")==="true"?null:sec);});
+function markActive(h){document.querySelectorAll("[data-nav]").forEach(a=>{if(a.dataset.nav===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+  const cur=side.querySelector('.grp a[aria-current="page"]');if(cur)openGroup(cur.closest(".grp"));}
+/** Collapse the whole sidebar on wide screens to give the content more room. */
+(function(){
+  const btn=$("#sideBtn"),shell=$(".shell");if(!btn)return;
+  const set=c=>{shell.classList.toggle("side-collapsed",c);btn.setAttribute("aria-expanded",String(!c));try{localStorage.setItem("pm-side",c?"0":"1");}catch(_){}};
+  try{if(localStorage.getItem("pm-side")==="0"){shell.classList.add("side-collapsed");btn.setAttribute("aria-expanded","false");}}catch(_){}
+  btn.addEventListener("click",()=>set(!shell.classList.contains("side-collapsed")));
+})();
 const menuBtn=$("#menuBtn");
 function closeNav(){side.classList.remove("open");menuBtn.setAttribute("aria-expanded","false");}
 menuBtn.addEventListener("click",()=>{const o=side.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(o));});

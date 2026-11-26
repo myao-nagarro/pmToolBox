@@ -66,12 +66,26 @@ button,input,select,textarea{font:inherit;color:inherit}
 .icon-btn svg{width:22px;height:22px;fill:currentColor}
 .icon-btn:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
 
+/* Sidebar accordion and collapse */
+.grp h2{margin:0 0 2px;padding:0}
+.grp-btn{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;padding:10px 12px;border-radius:999px;cursor:pointer;text-align:left;font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--gc);transition:background .15s}
+.grp-btn:hover{background:color-mix(in srgb,var(--gc) 10%,transparent)}
+.grp-btn span{flex:1}
+.grp-btn .chev{transition:transform .2s}
+.grp-btn[aria-expanded="true"]{background:color-mix(in srgb,var(--gc) 14%,transparent)}
+.grp-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.grp ul{margin:4px 0 4px 14px;padding:0 0 0 8px;border-left:2px solid color-mix(in srgb,var(--gc) 35%,transparent)}
+.side-btn{display:grid}
+.shell.side-collapsed{grid-template-columns:0 minmax(0,1fr)}
+.shell.side-collapsed .side{visibility:hidden;padding:0;overflow:hidden}
+@media (max-width:900px){.side-btn{display:none}.shell.side-collapsed{grid-template-columns:1fr}.shell.side-collapsed .side{visibility:visible;padding:16px 12px}}
+@media (prefers-reduced-motion:reduce){.grp-btn .chev{transition:none}}
+
 /* Layout */
 .shell{display:grid;grid-template-columns:288px minmax(0,1fr)}
 .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--head-h));align-self:start;height:calc(100vh - var(--head-h) - env(safe-area-inset-top,0px));overflow:auto;padding:16px 12px 40px 12px;background:var(--paper)}
 .grp{margin-bottom:18px}
-.grp h2{display:flex;align-items:center;gap:8px;margin:0 0 6px;padding:0 12px;font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--gc)}
-.grp ul{list-style:none;margin:0;padding:0}
+.grp ul{list-style:none}
 .grp a{display:block;text-decoration:none;padding:9px 16px;border-radius:999px;font-size:.93rem;color:var(--ink);transition:background .15s}
 .grp a:hover{background:color-mix(in srgb,var(--gc) 10%,transparent)}
 .grp a[aria-current="page"]{background:color-mix(in srgb,var(--gc) 20%,var(--surface));font-weight:500}
