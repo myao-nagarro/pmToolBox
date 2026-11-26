@@ -1,0 +1,11 @@
+{
+  "name": "PM Toolbox",
+  "short_name": "PM Toolbox",
+  "description": "Project management frameworks, roles, RAID and concepts with a mind map and sourced glossary.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F6F9",
+  "theme_color": "#2B52C4",
+  "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

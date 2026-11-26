@@ -1,0 +1,15 @@
+{
+  "name": "pm-toolbox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static web app: project management frameworks, roles, RAID, mind map and sourced glossary.",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes http-server -c-1 -p 8080 .",
+    "build:single": "node scripts/build-single.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  },
+  "engines": { "node": ">=20" }
+}

@@ -1,0 +1,97 @@
+"use strict";
+const GL_NEW = {
+okr:{sources:{
+  R:{s:"Google re:Work",t:"Guide: Set goals with OKRs",p:"Google re:Work",u:"https://rework.withgoogle.com/en/guides/set-goals-with-okrs"},
+  D:{s:"Doerr 2018",t:"John Doerr, Measure What Matters",p:"Portfolio / Penguin, 2018",u:""},
+  G:{s:"Grove 1983",t:"Andrew S. Grove, High Output Management",p:"Random House, 1983",u:""}},
+terms:[
+["Objectives and Key Results (OKR)","A goal-setting method pairing a qualitative objective with a few measurable key results.","R","Fjordbank’s service desk team sets one OKR per quarter that the whole team can see."],
+["Objective","A significant, concrete and inspiring statement of what you want to achieve.","D","“Make self-service the branches’ first choice for IT help.”"],
+["Key result","A specific, time-bound and measurable result that shows progress toward the objective.","D","“Raise portal deflection from 20% to 45% by 30 June.”"],
+["Initiative","The work undertaken to move a key result; kept separate from the key result itself.","D","Writing 50 knowledge articles and redesigning the portal home page are initiatives."],
+["Committed OKR","An OKR the team agrees must be fully achieved, adjusting schedules and resources to do so.","R","“Migrate all 60 branches to the new desk by Q2” is committed: anything below 100% is a miss."],
+["Aspirational OKR","An ambitious stretch goal where reaching around 60–70% counts as success.","R","“Resolve 70% of requests with no human touch” is aspirational: reaching 0.7 of it is a win."],
+["OKR scoring","Grading each key result, often on a 0–1.0 scale, at the end of the cycle.","R","Deflection reaches 38% against a 45% target from 20%, scoring about 0.7."],
+["Check-in","A regular, usually weekly, review of OKR progress and confidence.","D","Every Monday the team updates confidence on each key result in five minutes."],
+["Alignment","Linking OKRs across levels so team goals visibly support company goals.","D","The service desk OKR links to the bank’s goal of lowering cost-to-serve."],
+["Stretch goal","A goal deliberately set beyond what seems easily achievable.","R","Halving resolution time in one quarter, knowing that a 35% drop would still be excellent."],
+["Management by objectives (MBO)","The earlier management practice that OKRs grew out of, setting objectives agreed between manager and employee.","G","Annual individual objectives in Fjordbank’s appraisal system follow MBO."]]},
+
+kpi:{sources:{
+  L:{s:"PMI Lexicon",t:"PMI Lexicon of Project Management Terms, Version 5.0",p:"Project Management Institute",u:"https://www.pmi.org/standards/lexicon"},
+  P:{s:"Parmenter 2019",t:"David Parmenter, Key Performance Indicators: Developing, Implementing, and Using Winning KPIs, 4th ed.",p:"Wiley, 2019",u:""},
+  K:{s:"Kanban Guide",t:"The Kanban Guide (May 2025 edition)",p:"kanbanguides.org",u:"https://kanbanguides.org/english/"},
+  I:{s:"ITIL 4 Foundation",t:"ITIL® Foundation, ITIL 4 Edition",p:"AXELOS, 2019",u:"https://www.axelos.com"},
+  D:{s:"DORA metrics",t:"DORA metrics: how to measure Open DevOps success",p:"Atlassian",u:"https://www.atlassian.com/devops/frameworks/dora-metrics"},
+  X:{s:"Common practice",t:"Widely used practice with no single official definition",p:"",u:""},
+  H:{s:"Goodhart 1975",t:"Charles Goodhart, Problems of Monetary Management: The U.K. Experience",p:"1975",u:""}},
+terms:[
+["Key performance indicator (KPI)","A measure chosen because it shows performance on something critical to success, tracked against a target.","P","First contact resolution is one of five KPIs on the service desk dashboard."],
+["Metric","Any quantified measurement; only some metrics are important enough to be KPIs.","P","Tickets per agent per day is tracked but is not a KPI."],
+["Leading indicator","A measure that predicts future performance.","P","Rising work in progress warns that resolution times will slip next week."],
+["Lagging indicator","A measure that confirms performance after the fact.","P","Quarterly customer satisfaction confirms whether service improved."],
+["Baseline","The measured starting value against which change is judged.","X","Before the portal launches, deflection is measured at 20%."],
+["Target","The value a KPI is expected to reach by a given time.","X","45% deflection by the end of Q2."],
+["Threshold","The value at which a KPI changes status, for example from green to amber.","X","Amber when SLA compliance drops below 95%, red below 90%."],
+["Cost performance index (CPI)","Earned value divided by actual cost; below 1 means over budget.","L","CPI of 0.87 on the service desk project triggers a cost review."],
+["Schedule performance index (SPI)","Earned value divided by planned value; below 1 means behind schedule.","L","SPI of 0.8 prompts the team to re-plan the data migration."],
+["Throughput","The number of work items finished per unit of time.","K","The access team finishes 42 requests a week."],
+["Cycle time","Elapsed time from when a work item starts to when it finishes.","K","Access requests take two days on average from approval to done."],
+["Deployment frequency","How often an organization successfully releases to production.","D","The app team deploys to production twice a week."],
+["Change failure rate","The share of deployments that cause a failure in production.","D","2 of 40 releases needed a rollback: a 5% change failure rate."],
+["Time to restore service","How long it takes to recover from a failure in production.","D","The payments outage was fixed in 45 minutes."],
+["Service level","A metric, or set of metrics, defining expected or achieved service quality.","I","95% of requests fulfilled within two business days."],
+["Goodhart’s law","Once a measure is used as a target for control, it tends to stop being a reliable measure.","H","Agents closed tickets early to hit resolution time, so reopen rate was added as a paired KPI."]]},
+
+"business-justification":{sources:{
+  M:{s:"PRINCE2 7 manual",t:"PRINCE2® 7 Managing Successful Projects – Business case practice and Glossary",p:"PeopleCert / AXELOS, 2023",u:"https://peoplecert.org/news-and-announcements/new-prince2-7"},
+  S:{s:"MSP 5",t:"Managing Successful Programmes (MSP®), 5th edition",p:"AXELOS, 2020",u:""}},
+terms:[
+["Continued business justification","The principle that a project must have a valid reason to start, and keep it throughout, or be changed or stopped.","M","When a competitor app makes the bank’s planned feature less valuable, the board re-tests the business case before funding the next stage."],
+["Business case","The justification for the project, covering costs, benefits, risks and timescales.","M","The mobile app business case shows 6 million cost and 30-month payback."],
+["Output","A specialist product handed over to users.","M","The published mobile app."],
+["Capability","The completed set of outputs needed to deliver an outcome, as used in programme management.","S","The app plus trained support staff and updated branch procedures."],
+["Outcome","The result of change, usually a change in behaviour or circumstances.","M","Customers pay bills on their phones instead of at the branch."],
+["Benefit","A measurable improvement from an outcome, seen as an advantage by stakeholders.","M","20% fewer counter transactions within a year."],
+["Dis-benefit","A measurable result seen as negative by one or more stakeholders.","M","Lower overtime income for branch staff."],
+["Strategic objective","An organizational goal that benefits contribute to.","S","Reduce cost-to-serve per customer by 15% by 2028."],
+["Benefit owner","The person accountable for realizing a benefit, typically the Senior User.","S","The head of digital channels owns the branch-transaction benefit."],
+["Benefits management approach","How and when benefits will be measured, including after the project closes.","M","Finance measures counter transactions quarterly for two years after launch."],
+["Investment appraisal","The financial assessment of a project’s costs against benefits over time.","M","A five-year net present value calculation for the app."]]},
+
+"pmo-governance":{sources:{
+  L:{s:"PMI Lexicon",t:"PMI Lexicon of Project Management Terms, Version 5.0",p:"Project Management Institute",u:"https://www.pmi.org/standards/lexicon"},
+  G:{s:"PMI Governance guide",t:"Governance of Portfolios, Programs, and Projects: A Practice Guide",p:"Project Management Institute, 2016",u:""},
+  O:{s:"P3O",t:"Portfolio, Programme and Project Offices (P3O®)",p:"AXELOS",u:""},
+  A:{s:"APM BoK 7",t:"APM Body of Knowledge, 7th edition",p:"Association for Project Management, 2019",u:""},
+  B:{s:"PMBOK 6",t:"A Guide to the Project Management Body of Knowledge (PMBOK® Guide) – Sixth Edition, section 2.4.4.3",p:"Project Management Institute, 2017",u:""},
+  X:{s:"Common practice",t:"Widely used practice with no single official definition",p:"",u:""}},
+terms:[
+["Governance","The framework of authority, accountability and decision-making through which projects are directed and controlled.","G","Fjordbank’s project governance defines who approves funding, scope changes and go-live."],
+["Project management office (PMO)","An organizational structure that standardizes project governance and shares resources, methods, tools and techniques.","L","The PMO provides templates, runs the portfolio dashboard and checks gate criteria."],
+["Supportive PMO","A PMO that provides templates, training and lessons learned, with low control over projects.","B","A new IT PMO starts by sharing templates and running training."],
+["Controlling PMO","A PMO that requires compliance with methods, tools and reporting, with moderate control.","B","All projects must submit a monthly status report in the standard format."],
+["Directive PMO","A PMO that manages projects directly, with high control.","B","Project managers report to the PMO head, who assigns them to projects."],
+["Portfolio office","An office that supports selecting, prioritizing and balancing the investment portfolio.","O","The portfolio office prepares the ranking of 40 initiatives for the investment board."],
+["Stage gate","A decision point where the project is reviewed against criteria before proceeding.","A","At Gate 3 the board checks the test results before approving go-live."],
+["Decision rights","Who is authorized to make which decisions, and within what limits.","G","Project managers approve changes up to 20,000; above that goes to the sponsor."],
+["Escalation","Passing an issue or decision to a higher authority when it exceeds delegated limits.","A","A four-week delay beyond tolerance is escalated to the steering group."],
+["Steering committee","A senior group that directs a project or program and makes key decisions.","A","The CIO, head of retail and head of risk meet monthly as the steering committee."],
+["Assurance","Independent checking that a project is being run properly and will meet its objectives.","A","Internal audit reviews the data migration controls before cut-over."],
+["RAG status","A red, amber or green rating summarizing project health against defined criteria.","X","Amber means forecast within 10% of tolerance; red means beyond it."]]},
+
+"strategic-cascade":{sources:{
+  A:{s:"Akao 1991",t:"Yoji Akao (ed.), Hoshin Kanri: Policy Deployment for Successful TQM",p:"Productivity Press, 1991",u:""},
+  J:{s:"Jackson 2006",t:"Thomas L. Jackson, Hoshin Kanri for the Lean Enterprise",p:"Productivity Press, 2006",u:""},
+  K:{s:"Kaplan & Norton",t:"Robert S. Kaplan and David P. Norton, The Balanced Scorecard (1996) and Strategy Maps (2004)",p:"Harvard Business School Press",u:""},
+  D:{s:"Doerr 2018",t:"John Doerr, Measure What Matters",p:"Portfolio / Penguin, 2018",u:""}},
+terms:[
+["Hoshin Kanri","A strategic planning method that deploys a few breakthrough objectives down through the organization and reviews them regularly.","A","Fjordbank chooses three breakthrough objectives a year and deploys them to every department."],
+["Catchball","The back-and-forth negotiation of targets and means between organizational levels.","A","Branch IT proposes it can cut cost-to-serve 10%, not 15%; the target is agreed after two rounds."],
+["X-matrix","A one-page Hoshin tool linking long-term objectives, annual objectives, priorities, metrics and owners.","J","The bank’s X-matrix links “digital-first” to the mobile app project and the deflection KPI."],
+["Breakthrough objective","A long-term objective requiring significant change, beyond normal improvement.","J","“Half of all customer interactions are digital by 2028.”"],
+["Line of sight","The ability of every team to see how its work contributes to strategy.","D","A service desk agent can explain how faster ticket resolution supports lower cost-to-serve."],
+["Balanced scorecard","A performance framework balancing financial, customer, internal process and learning and growth measures.","K","Fjordbank’s IT scorecard tracks cost, branch satisfaction, SLA compliance and staff certification."],
+["Strategy map","A diagram of cause-and-effect links between strategic objectives across scorecard perspectives.","K","Training agents leads to faster resolution, which raises branch satisfaction and lowers cost."],
+["Cascading goals","Translating higher-level goals into supporting goals at each level below.","D","Company goal, then IT goal, then service desk OKR, then individual focus areas."]]}
+};
