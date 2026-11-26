@@ -8,14 +8,21 @@ const BP_FW = ["Scrum / Agile","SAFe / scaling","Kanban / flow","Stage-gate / pr
 Object.assign(TOPICS, {
 
 "bp-microsoft":{group:"bestpractices",title:"Microsoft",tagline:"Scrum in 3-week sprints, a layered planning cadence and DevOps for services.",
-bp:{hue:"#0B6BCB",mark:"Ms",headline:"Scrum for teams, DevOps for the service",fw:{"Scrum / Agile":2,"Kanban / flow":1,"DevOps / SRE":2}},
+bp:{hue:"#0B6BCB",mark:"Ms",headline:"Scrum for teams, DevOps for the service",fw:{"Scrum / Agile":2,"Kanban / flow":2,"DevOps / SRE":2}},
 sections:[
 {t:"p",x:"Microsoft’s Developer Division has described its own journey in detail. It adopted Scrum at team level with 3-week sprints and self-managed teams, then extended into DevOps when its products moved to a cloud service. Azure DevOps and Visual Studio teams have been described as sharing the same sprint cadence."},
 {t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Microsoft uses it","Evidence"],rows:[
 ["Scrum / Agile","Team-level Scrum with 3-week sprints and self-managed teams.","Described in Microsoft’s own account of the Developer Division"],
 ["Layered planning","Sprints roll up into plans of about three sprints, six-month seasons and a 12-month strategy.","Conference talk summarizing the Developer Division"],
 ["DevOps","Extended from agile when the product became a hosted cloud service, with continuous delivery and live-site learning.","Microsoft e-book and Azure blog"],
-["Kanban","Supported as a board view in Azure DevOps Boards for flow-based teams.","Product capability, not an internal mandate"]]},
+["Kanban","Used by Xbox Engineering Services, per its development manager (see the case below). Also supported as a board view in Azure DevOps Boards.","Microsoft Research talk (2015); product capability"]]},
+{t:"list",h:"Case: Kanban in Xbox Engineering Services",i:[
+["Who and where","Eric Brechner, development manager of Microsoft’s Xbox Engineering Services team, gave the talk “Agile Project Management with Kanban” (Microsoft Research, April 2015)."],
+["How long","The abstract says he has used Kanban with multiple teams for the past four years."],
+["The method in one line","A way of organizing work, staying focused and avoiding mistakes that can be learned in about five minutes with sticky notes and markers."],
+["What the related book covers","Estimating work, meeting deadlines, deploying results, moving from Scrum or Waterfall, and using Kanban in large projects."],
+["Hands-on format","Attendees of the in-person talk build their own Kanban board for their daily work."],
+["What the page does not say","No reasons for adopting Kanban, no WIP limits and no results are given, and there is no transcript. Watch the video for detail."]]},
 {t:"list",h:"Project management practices",i:[
 ["Fixed cadence","All teams share the same sprint length, which makes cross-team planning and release simpler."],
 ["Self-managed teams","Teams own their backlog and commit to what they can finish; managers set direction, not tasks."],
@@ -31,7 +38,8 @@ sections:[
 {t:"links",h:"Sources",i:[
 ["From Agile to DevOps at Microsoft Developer Division","Microsoft e-book on the journey.","https://download.microsoft.com/download/8/d/c/8dce111b-aa51-49d8-b8dd-ffcbc346f6ab/from_agile_to_devops_at_microsoft_developer_division.pdf"],
 ["How Microsoft plans with DevOps","Microsoft Learn description of planning.","https://learn.microsoft.com/devops/plan/how-microsoft-plans-devops"],
-["Sharing the DevOps journey at Microsoft","Azure blog.","https://azure.microsoft.com/blog/sharing-the-devops-journey-at-microsoft/"]]}
+["Sharing the DevOps journey at Microsoft","Azure blog.","https://azure.microsoft.com/blog/sharing-the-devops-journey-at-microsoft/"],
+["Agile Project Management with Kanban (video)","Eric Brechner, Xbox Engineering Services, Microsoft Research, 2015.","https://www.microsoft.com/en-us/research/video/agile-project-management-with-kanban/"]]}
 ],related:["scrum","kanban","pmo-governance"]},
 
 "bp-google":{group:"bestpractices",title:"Google",tagline:"OKRs for goals and SRE for reliability; teams pick their own delivery method.",
@@ -352,8 +360,8 @@ donts:[
 
 /* ---------- Strategy, dos and don'ts for the original organizations ---------- */
 const BP_EXTRA={
-"bp-microsoft":{strat:[["Standardize the cadence first","Teams share a sprint length before the organization scales."],["Layer the plans","Sprint, plan, season and year plans stay connected."],["Extend agile into DevOps","When a product becomes a service, add live-site learning."],["Self-managed within a rhythm","Autonomy for teams, consistency in the calendar."]],
- dos:[["Align teams on one sprint length","Makes cross-team planning simpler."],["Plan at several horizons","Link the sprint to the strategy."],["Feed production data back","Add findings to the backlog."],["Let teams own their backlog","Managers set direction, not tasks."]],
+"bp-microsoft":{strat:[["Standardize the cadence first","Teams share a sprint length before the organization scales."],["Layer the plans","Sprint, plan, season and year plans stay connected."],["Extend agile into DevOps","When a product becomes a service, add live-site learning."],["Self-managed within a rhythm","Autonomy for teams, consistency in the calendar."],["Kanban where flow fits","Xbox Engineering Services used Kanban with sticky notes and a board, so teams can choose flow over sprints."]],
+ dos:[["Align teams on one sprint length","Makes cross-team planning simpler."],["Plan at several horizons","Link the sprint to the strategy."],["Feed production data back","Add findings to the backlog."],["Let teams own their backlog","Managers set direction, not tasks."],["Try a simple physical Kanban board","The Xbox talk shows it can start with sticky notes and markers."]],
  donts:[["Treat the 2015–2018 pattern as current","Check what has changed."],["Add process before aligning cadence","Scaling needs a common rhythm first."],["Stop at the sprint","Ship and learn from the live service."],["Micromanage tasks","It defeats self-management."]]},
 "bp-google":{strat:[["Goals by OKR, method by team","The company sets goals; teams pick how to deliver."],["Settle speed versus reliability with a budget","An error budget replaces argument."],["Learn through blameless postmortems","Fix systems, not people."],["Measure delivery with DORA","Use four measures to see trends."]],
  dos:[["Keep OKRs few and ambitious","Three to five per team."],["Publish them openly","Visibility aligns teams."],["Agree error-budget rules in advance","So the response is automatic."],["Write blameless postmortems with owned actions","Include dates."]],
