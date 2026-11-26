@@ -331,3 +331,18 @@ main:has(.mm-wrap){padding:16px clamp(12px,2vw,24px) 24px}
 }
 @media (max-width:520px){ .search{max-width:none} .pager{grid-template-columns:1fr} }
 @media (prefers-reduced-motion:reduce){ .side{transition:none} }
+
+/* Framework adoption matrix */
+.org-mark.sm{width:28px;height:28px;border-radius:9px;font-size:.62rem;margin-right:10px;vertical-align:middle}
+.matrix th[scope=row] a{display:flex;align-items:center;text-decoration:none;font-weight:500}
+.matrix thead th{text-align:center;font-size:.82rem}
+.matrix thead th:first-child{text-align:left}
+.matrix td{text-align:center;vertical-align:middle}
+.dot{display:inline-block;width:16px;height:16px;border-radius:50%;vertical-align:-3px;border:2px solid var(--c-bestpractices)}
+.dot.full{background:var(--c-bestpractices)}
+.dot.half{background:linear-gradient(90deg,var(--c-bestpractices) 50%,transparent 50%)}
+.dot.none{border-color:var(--line)}
+@container (max-width:760px){
+  .matrix td{display:flex;align-items:center;justify-content:space-between;text-align:left}
+  .matrix td[data-label]::before{display:inline}
+}

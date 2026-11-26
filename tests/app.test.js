@@ -110,7 +110,7 @@ test("best practices: ten organizations, filterable overview, sourced pages, TOG
   const ids = Object.keys(data("TOPICS")).filter(k => data("TOPICS")[k].group === "bestpractices");
   assert.equal(ids.length, 10);
   assert.equal(d.querySelectorAll(".bp-card").length, 10);
-  d.querySelector('.theme[data-theme="Innovation"]').click();
+  d.querySelector('.theme[data-theme="SAFe / scaling"]').click();
   const n = d.querySelectorAll(".bp-card").length;
   assert.ok(n > 0 && n < 10);
   for (const id of ids) {

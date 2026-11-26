@@ -1,211 +1,252 @@
 "use strict";
-/* ---------- Best practices from leading organizations ----------
-   Paraphrased summaries of publicly described practices. Each page lists its sources;
-   check them for the organization's own wording and for anything that has changed since. */
-const BP_THEMES = ["Delivery","Culture and teams","Decisions","Risk and quality","Innovation","Governance"];
+/* ---------- Project management practices of leading organizations ----------
+   Focus: how each organization manages projects and which PM frameworks it adopts.
+   Paraphrased from public sources, listed on each page. Where an organization does not publish
+   how it uses a framework, the page says so instead of guessing.
+   bp.fw rates each framework: 2 = documented as used; 1 = supported, optional, tailored or only partly documented. */
+const BP_FW = ["Scrum / Agile","SAFe / scaling","Kanban / flow","Stage-gate / predictive","Hybrid","OKRs","DevOps / SRE"];
 Object.assign(TOPICS, {
 
-"bp-microsoft":{group:"bestpractices",title:"Microsoft",tagline:"Engineering fundamentals, shared playbooks and a growth mindset.",
-bp:{themes:["Delivery","Culture and teams","Governance"],hue:"#0B6BCB",mark:"Ms",headline:"Make good habits the default"},
+"bp-microsoft":{group:"bestpractices",title:"Microsoft",tagline:"Scrum in 3-week sprints, a layered planning cadence and DevOps for services.",
+bp:{hue:"#0B6BCB",mark:"Ms",headline:"Scrum for teams, DevOps for the service",fw:{"Scrum / Agile":2,"Kanban / flow":1,"DevOps / SRE":2}},
 sections:[
-{t:"p",x:"Microsoft publishes much of how its engineering and customer-facing teams work: an open Code-With Engineering Playbook and the Cloud Adoption Framework. The common thread is to write the good habits down, so every new project starts from a proven baseline instead of reinventing one."},
-{t:"list",h:"Core practices",i:[
-["Engineering fundamentals first","Agree on source control, code review, testing, continuous integration and observability before the first feature is built."],
-["Working agreement","The team writes down how it works together: hours, how decisions are made, definition of done, how disagreement is handled."],
-["Retrospectives with follow-through","Each retrospective produces a small number of actions with owners, reviewed at the next one."],
-["Staged cloud adoption","The Cloud Adoption Framework moves from strategy and plan to ready, adopt, govern and manage, so technology change stays tied to business outcomes."],
-["Growth mindset","Leaders ask what was learned, not who is to blame. Learning from failures is treated as part of the work."]]},
-{t:"steps",h:"How a project manager can apply it",i:[
-["Start from a checklist","Adopt a one-page engineering fundamentals checklist at kick-off and review it every few sprints."],
-["Write the working agreement","Run a 60-minute session in week one. Keep the result visible in the team space."],
-["Tie work to outcomes","For every epic, name the business outcome and how you will see it, before building."],
-["Close the loop","Track retrospective actions on the board like any other work item."]]},
-{t:"note",h:"What to take from it",x:"The practices are cheap to copy. The value comes from doing them consistently, and from a leader who treats a missed checklist item as a prompt to fix the process, not to blame a person."},
+{t:"p",x:"Microsoft’s Developer Division has described its own journey in detail. It adopted Scrum at team level with 3-week sprints and self-managed teams, then extended into DevOps when its products moved to a cloud service. Azure DevOps and Visual Studio teams have been described as sharing the same sprint cadence."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Microsoft uses it","Evidence"],rows:[
+["Scrum / Agile","Team-level Scrum with 3-week sprints and self-managed teams.","Described in Microsoft’s own account of the Developer Division"],
+["Layered planning","Sprints roll up into plans of about three sprints, six-month seasons and a 12-month strategy.","Conference talk summarizing the Developer Division"],
+["DevOps","Extended from agile when the product became a hosted cloud service, with continuous delivery and live-site learning.","Microsoft e-book and Azure blog"],
+["Kanban","Supported as a board view in Azure DevOps Boards for flow-based teams.","Product capability, not an internal mandate"]]},
+{t:"list",h:"Project management practices",i:[
+["Fixed cadence","All teams share the same sprint length, which makes cross-team planning and release simpler."],
+["Self-managed teams","Teams own their backlog and commit to what they can finish; managers set direction, not tasks."],
+["Plan at several horizons","Sprint, quarter, season and year plans stay linked so teams can see how the sprint serves the strategy."],
+["Feature teams","Small cross-functional teams take features from idea to production."],
+["Learn from live service","Telemetry and incidents feed straight back into the backlog."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Fix one sprint length","Align teams on the same cadence before trying to scale."],
+["Add horizon plans","Keep a short quarterly plan above the sprint backlog."],
+["Make teams self-managing","Hold them to outcomes, not task lists."],
+["Close the loop","Review production data every sprint and add findings to the backlog."]]},
+{t:"note",h:"Check the date",x:"The best-documented accounts are from 2015 to 2018, so the current cadence may differ. Use them as a pattern, not a current description."},
 {t:"links",h:"Sources",i:[
-["Code-With Engineering Playbook","Open playbook for engineering fundamentals, agile and team working.","https://microsoft.github.io/code-with-engineering-playbook/"],
-["Cloud Adoption Framework","Microsoft’s guidance for planning and governing cloud adoption.","https://learn.microsoft.com/azure/cloud-adoption-framework/"]]}
-],related:["scrum","pmo-governance","kpi"]},
+["From Agile to DevOps at Microsoft Developer Division","Microsoft e-book on the journey.","https://download.microsoft.com/download/8/d/c/8dce111b-aa51-49d8-b8dd-ffcbc346f6ab/from_agile_to_devops_at_microsoft_developer_division.pdf"],
+["How Microsoft plans with DevOps","Microsoft Learn description of planning.","https://learn.microsoft.com/devops/plan/how-microsoft-plans-devops"],
+["Sharing the DevOps journey at Microsoft","Azure blog.","https://azure.microsoft.com/blog/sharing-the-devops-journey-at-microsoft/"]]}
+],related:["scrum","kanban","pmo-governance"]},
 
-"bp-google":{group:"bestpractices",title:"Google",tagline:"Psychological safety, measurable goals and blameless learning.",
-bp:{themes:["Culture and teams","Risk and quality","Delivery"],hue:"#1A8F5B",mark:"G",headline:"Safe teams ship better work"},
+"bp-google":{group:"bestpractices",title:"Google",tagline:"OKRs for goals and SRE for reliability; teams pick their own delivery method.",
+bp:{hue:"#1A8F5B",mark:"G",headline:"Goals by OKR, reliability by SRE",fw:{"OKRs":2,"DevOps / SRE":2}},
 sections:[
-{t:"p",x:"Google’s public guidance focuses on how teams behave. Its Project Aristotle research found psychological safety was the strongest factor in effective teams. Site Reliability Engineering adds a disciplined way to balance speed against reliability, and OKRs connect daily work to ambitious goals."},
-{t:"list",h:"Core practices",i:[
-["Psychological safety","Team members feel able to take risks and admit mistakes. Managers model this by asking questions and sharing their own errors."],
-["OKRs","A few ambitious objectives, each with measurable key results, reviewed and scored openly."],
-["Blameless postmortems","After an incident, write up what happened, why, and what changes. The focus is on systems and process, not on individuals."],
-["Error budgets","Agree an acceptable level of unreliability. While the budget lasts, ship fast; when it runs out, slow down and fix reliability."],
-["Design docs","Propose significant changes in a short written document and gather comments before building."],
-["DORA metrics","Track lead time, deployment frequency, change failure rate and time to restore as signals of delivery health."]]},
-{t:"steps",h:"A blameless postmortem in four steps",i:[
-["Build the timeline","Collect facts: what happened and when, without judging."],
-["Find contributing factors","Ask “why” until you reach conditions that can be changed."],
-["Agree actions","Few, specific, owned, with dates."],
-["Share it","Publish the write-up so other teams learn too."]]},
-{t:"note",h:"Watch out",x:"OKRs lose their value when they are tied to pay or used as a performance score. Keep them for focus and learning."},
+{t:"p",x:"Google is best known for OKRs, which it uses to set and align goals across teams, and for Site Reliability Engineering, which manages the balance between delivery speed and reliability. We found no authoritative source saying Google mandates Scrum or another delivery framework; commentary describes a lightweight mix that teams adapt themselves, but that is secondary."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Google uses it","Evidence"],rows:[
+["OKRs","Objectives with measurable key results, set openly at company, team and individual level and reviewed regularly.","Google’s re:Work guide and OKR playbook"],
+["SRE practices","Error budgets balance release speed against reliability; blameless postmortems follow incidents; launch work is coordinated with checklists.","Google’s SRE book"],
+["DORA metrics","Lead time, deployment frequency, change failure rate and time to restore measure delivery health.","Google’s DORA research programme"],
+["Scrum / Agile","No documented company-wide mandate; teams choose how they work.","Secondary commentary only"]]},
+{t:"list",h:"Project management practices",i:[
+["Ambitious, open goals","OKRs are visible to everyone and scored, which aligns teams without detailed task control."],
+["Error budget as a rule","When the budget is spent, feature releases slow until reliability recovers. The rule removes argument."],
+["Blameless postmortems","Written after incidents with actions, owners and dates."],
+["Design docs","A short proposal reviewed before significant work starts."],
+["Measure delivery","Track the four DORA measures and discuss trends, not targets."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Write 3 to 5 OKRs","Keep them ambitious and measurable, and review monthly."],
+["Agree a quality budget","Define how much failure is acceptable and what happens when it’s used."],
+["Run a postmortem","After the next incident, capture the timeline, causes and owned actions."],
+["Track the four measures","Use them to spot flow problems."]]},
+{t:"note",h:"Caution",x:"OKRs lose value when tied to pay or performance ratings. Keep them for focus and learning."},
 {t:"links",h:"Sources",i:[
-["re:Work – Guide: Understand team effectiveness","Google’s research on what makes teams effective, including psychological safety.","https://rework.withgoogle.com/"],
-["Site Reliability Engineering book","Free online book covering error budgets and postmortem culture.","https://sre.google/sre-book/table-of-contents/"],
-["DORA","The research programme behind the four delivery metrics.","https://dora.dev/"]]}
-],related:["okr","kpi","risk","scrum"]},
+["re:Work – Set goals with OKRs","Google’s own guide.","https://rework.withgoogle.com/en/guides/set-goals-with-okrs"],
+["Google’s OKR playbook","Copy of the internal guide.","https://www.whatmatters.com/resources/google-okr-playbook"],
+["Site Reliability Engineering book","Error budgets, postmortems and launches.","https://sre.google/sre-book/table-of-contents/"],
+["DORA","Research behind the delivery metrics.","https://dora.dev/"]]}
+],related:["okr","kpi","risk","kanban"]},
 
-"bp-amazon":{group:"bestpractices",title:"Amazon",tagline:"Working backwards, small owning teams and fast, reversible decisions.",
-bp:{themes:["Decisions","Delivery","Innovation"],hue:"#C26A00",mark:"A",headline:"Start from the customer"},
+"bp-amazon":{group:"bestpractices",title:"Amazon",tagline:"Its own mechanisms rather than a named framework: small owning teams and working backwards.",
+bp:{hue:"#C26A00",mark:"A",headline:"Small owners, written plans, run what you build",fw:{"Scrum / Agile":1,"DevOps / SRE":2}},
 sections:[
-{t:"p",x:"Amazon describes its way of working through its Leadership Principles, annual shareholder letters and widely discussed mechanisms. Four stand out for project managers: working backwards from the customer, small teams with single owners, written narratives, and a clear way to size decisions."},
-{t:"list",h:"Core practices",i:[
-["Working backwards","Before building, write the press release and FAQ that would announce the finished product. If it doesn’t read well, the idea isn’t ready."],
-["Two-pizza teams","Keep teams small enough to be fed by two pizzas, each with a clear mission and the ability to ship independently."],
-["Single-threaded ownership","One leader whose main focus is one goal, so it is never a side job."],
-["Written narratives","Replace slide decks in key meetings with a short written memo that everyone reads silently first."],
-["One-way and two-way doors","Decide carefully on irreversible choices; decide quickly and learn from reversible ones."],
-["Disagree and commit","Voice concerns, then fully back the decision once it is made."]]},
-{t:"table",h:"Sizing a decision",head:["Type","What it means","Approach"],rows:[
-["One-way door","Hard or costly to reverse","Slow down, involve senior reviewers, document the reasoning"],
-["Two-way door","Can be reversed cheaply","Decide quickly with about 70% of the information, then adjust"]]},
-{t:"note",h:"For your next project",x:"Try a one-page “press release” as the first artefact of a new initiative. It forces a shared answer to who the customer is and what changes for them."},
+{t:"p",x:"Amazon’s public material describes its own mechanisms rather than adopting a named framework. Work is organized into small two-pizza teams, often led by a single-threaded owner, and new ideas start by working backwards from the customer. AWS presents this as an agile, DevOps-style model. We found no source on Amazon using PMBOK, PRINCE2 or a formal Scrum standard."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Amazon works","Evidence"],rows:[
+["Agile principles","Small autonomous teams own one service end to end and can ship independently.","AWS executive insights on two-pizza teams"],
+["DevOps","Teams run what they build, which AWS describes in its DevOps guidance.","AWS whitepaper"],
+["Own mechanisms","Working backwards (a press release and FAQ before building), written narratives and single-threaded leaders.","Amazon and AWS publications; secondary summaries"],
+["Scrum, PMBOK, PRINCE2","No public evidence of a company-wide adoption.","Not documented"]]},
+{t:"list",h:"Project management practices",i:[
+["Two-pizza teams","Teams small enough to be fed by two pizzas, around five to ten people, each focused on one service."],
+["Single-threaded owner","One leader responsible for the team’s goal, protected from distractions."],
+["Working backwards","Write the customer-facing announcement first. If it doesn’t read well, the idea isn’t ready."],
+["Written narratives","Read in silence at the start of key meetings instead of slides."],
+["Reversible and irreversible decisions","Decide fast on reversible choices, slowly on irreversible ones."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Name a single owner","For each initiative, one person whose main job is its success."],
+["Write the announcement first","One page: who the customer is and what changes for them."],
+["Right-size the team","Aim for a team that can be fed by two pizzas."],
+["Label decisions","Mark each as reversible or not, and set review depth accordingly."]]},
+{t:"note",h:"Caution",x:"AWS itself says the two-pizza model may not suit every organization or business unit."},
 {t:"links",h:"Sources",i:[
-["Amazon Leadership Principles","Amazon’s own list of principles.","https://www.aboutamazon.com/about-us/leadership-principles"],
-["Letter to shareholders, 2016","Describes fast decisions and the 70% rule.","https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders"]]}
-],related:["rapid","business-justification","okr"]},
+["Amazon’s two-pizza team (AWS)","AWS executive insights.","https://aws.amazon.com/executive-insights/content/amazon-two-pizza-team/"],
+["Two-pizza teams (AWS DevOps whitepaper)","How the model supports DevOps.","https://docs.aws.amazon.com/whitepapers/latest/introduction-devops-aws/two-pizza-teams.html"],
+["Inside Day 1 (SHRM People Strategy Journal)","How Amazon uses agile team structures.","https://www.shrm.org/executive-network/insights/people-strategy/inside-day-1-how-amazon-uses-agile-team-structures-adaptive-practices-to-innovate-behalf-customers"]]}
+],related:["rapid","scrum","business-justification"]},
 
-"bp-deloitte":{group:"bestpractices",title:"Deloitte",tagline:"Choose the approach by outcome, then assure delivery against benefits.",
-bp:{themes:["Governance","Delivery","Risk and quality"],hue:"#5B8C00",mark:"D",headline:"Match method to outcome"},
+"bp-deloitte":{group:"bestpractices",title:"Deloitte",tagline:"Pick agile, traditional or hybrid by outcome, then assure and report on delivery.",
+bp:{hue:"#5B8C00",mark:"D",headline:"Match the method to the outcome",fw:{"Scrum / Agile":1,"SAFe / scaling":1,"Stage-gate / predictive":1,"Hybrid":2}},
 sections:[
-{t:"p",x:"Deloitte’s public guidance does not push one method. It describes agile, traditional and hybrid programmes as options chosen to fit the outcomes and benefits sought, with programme management and a PMO supporting whichever is used. Its assurance material shows how to check that delivery is on track, including for agile work."},
-{t:"list",h:"Core practices",i:[
-["Pick the approach from the outcome","Choose agile, waterfall or hybrid based on the benefits required, not preference."],
-["Results management","Whatever the method, check regularly whether the intended outcomes are being achieved."],
-["Assurance across the life of a programme","Independent checks of the business case, plans, risks and delivery readiness, adapted for agile cadences."],
-["A PMO that supports delivery","Provide reporting, planning discipline and risk visibility without adding unnecessary paperwork."],
-["Plain status reporting","Use simple status signals such as red, amber and green, backed by evidence."]]},
-{t:"steps",h:"Choosing an approach",i:[
-["State the benefits","Write down the outcomes and how they will be measured."],
-["Assess uncertainty","Is the scope clear and stable, or is it expected to change?"],
-["Choose and tailor","Pick the delivery model that fits. Combine approaches where parts of the work differ."],
-["Assure","Plan how you will check delivery and benefits at intervals."]]},
-{t:"note",h:"How this summary was built",x:"This page summarizes Deloitte’s public programme-management and assurance material. We did not find a single named Deloitte method, so treat it as themes, not a framework to certify against."},
+{t:"p",x:"Deloitte’s public guidance does not promote a single method. It supports agile, traditional and hybrid programmes and says the approach should be chosen from the outcomes and benefits sought. Its material covers programme management, a PMO approach, assurance of agile programmes, and agile transformation at scale."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Deloitte describes it","Evidence"],rows:[
+["Hybrid","Choose agile, waterfall or a mix based on desired outcomes and benefits.","Deloitte UK guidance on assuring agile programmes"],
+["Traditional / predictive","Status reporting such as red-amber-green is the main way to show control.","Deloitte US paper on agile and portfolio management"],
+["Agile","Results management still checks intended outcomes; assurance is adapted to agile cadences.","Deloitte US and UK papers"],
+["Scaled agile","Agile and DevOps transformation services, including large and complex change.","Deloitte service pages"],
+["PMO","Programme managers and a PMO approach support whichever method is chosen.","Deloitte Netherlands programme delivery page"]]},
+{t:"list",h:"Project management practices",i:[
+["Outcome-led method choice","State the benefits first, then choose how to deliver."],
+["Results management","Check benefits and outcomes regularly, whatever the method."],
+["Independent assurance","Review business case, plans, risks and readiness, adapted for agile work."],
+["PMO as support","Provide planning discipline and reporting without needless paperwork."],
+["Simple status","Use plain signals backed by evidence."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Write the benefits","Name the outcomes and how they will be measured."],
+["Assess uncertainty","Stable scope favours predictive; changing scope favours agile."],
+["Combine as needed","Use different methods for different parts of the work."],
+["Plan assurance","Schedule checks on delivery and benefits at intervals."]]},
+{t:"note",h:"How this was built",x:"We found no single named Deloitte method, so this page summarizes themes from several public papers and service pages. It is not a framework to certify against."},
 {t:"links",h:"Sources",i:[
-["Assuring agile programmes and projects (Deloitte UK)","Guidance on assurance when delivering with agile methods.","https://www2.deloitte.com/content/dam/Deloitte/cz/Documents/risk/deloitte-uk-assuring-agile-programmes-and-projects.pdf"],
-["Agile and project portfolio management (Deloitte US)","How reporting and results management work with agile and traditional delivery.","https://www.deloitte.com/content/dam/Deloitte/us/Documents/technology/us-cons-agile-and-project-portfolio-management.pdf"]]}
-],related:["business-justification","pmo-governance","pmbok","prince2"]},
+["Assuring agile programmes and projects (UK)","Guidance on assurance when using agile.","https://www2.deloitte.com/content/dam/Deloitte/cz/Documents/risk/deloitte-uk-assuring-agile-programmes-and-projects.pdf"],
+["Agile and project portfolio management (US)","Reporting and results management.","https://www.deloitte.com/content/dam/Deloitte/us/Documents/technology/us-cons-agile-and-project-portfolio-management.pdf"],
+["Programme delivery (Netherlands)","Agile, traditional and hybrid programmes.","https://www2.deloitte.com/nl/nl/pages/human-capital/solutions/program-delivery.html"]]}
+],related:["pmbok","prince2","pmo-governance","business-justification"]},
 
-"bp-adobe":{group:"bestpractices",title:"Adobe",tagline:"Frequent check-ins and a toolkit that lets anyone test an idea.",
-bp:{themes:["Culture and teams","Innovation"],hue:"#C4262E",mark:"Ad",headline:"Replace ceremony with conversation"},
+"bp-adobe":{group:"bestpractices",title:"Adobe",tagline:"Presents Scrum, SAFe and Kanban as options, supported by its Workfront tool.",
+bp:{hue:"#C4262E",mark:"Ad",headline:"Frameworks as options, one system of work",fw:{"Scrum / Agile":1,"SAFe / scaling":1,"Kanban / flow":1,"Hybrid":1}},
 sections:[
-{t:"p",x:"Adobe is known for two people-centred practices. In 2012 it replaced annual performance reviews and ratings with Check-in, an ongoing conversation between employee and manager. It also created Kickbox, a self-service innovation kit, and made it open for others to use."},
-{t:"list",h:"Core practices",i:[
-["Check-in","Regular two-way conversations on expectations, feedback and growth, replacing yearly ratings. Adobe describes these as quarterly today."],
-["Clear expectations","Set and revisit expectations together, so feedback can happen when it is useful, not months later."],
-["Kickbox","A short, step-by-step innovation process in a box. Individuals test an idea with a small budget and no need to ask for permission."],
-["Stage-gated experiments","Ideas move to the next level only after evidence from experiments."],
-["Open-sourcing the method","Sharing the toolkit with others invites improvement and builds credibility."]]},
-{t:"steps",h:"Bring check-ins to a project team",i:[
-["Agree the cadence","A short one-to-one every few weeks, with a simple agenda: expectations, feedback, growth."],
-["Keep notes light","Record agreements, not a form to be scored."],
-["Link to delivery","Connect the conversation to current goals and the team’s working agreement."],
-["Review","Ask the team after a quarter what to change."]]},
-{t:"note",h:"A caution",x:"Adobe’s reported results, such as lower voluntary attrition and fewer management hours spent on reviews, come from Adobe and its published case studies. Your results will depend on manager skill and trust."},
+{t:"p",x:"Adobe’s verified public material is about how organizations can run projects, mainly through its Workfront work-management product. It presents Scrum, Kanban, hybrid methods and scaling frameworks such as SAFe, LeSS and Scrum at Scale as options. We found no authoritative first-party account of how Adobe itself runs its internal projects; one third-party blog says it adopted Scrum and customized SAFe and Nexus, but it gives no citations."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","What Adobe’s material says","Evidence"],rows:[
+["Scrum and Kanban","Workfront supports both, plus hybrid approaches, in one system.","Adobe product pages (vendor)"],
+["SAFe, LeSS, Scrum at Scale","Larger organizations tend to benefit from SAFe-style structure; smaller ones may prefer approaches that build on Scrum.","Adobe business blog"],
+["Hybrid","Configurable work management for teams that mix methods.","Adobe product pages (vendor)"],
+["Internal adoption","Reported to be Scrum with customized scaling, but not confirmed.","Unverified third-party blog"]]},
+{t:"list",h:"Project management practices",i:[
+["One system of work","Intake, resourcing, tracking and reporting live in one place across teams."],
+["Method per team","Let each team use Scrum, Kanban or another method, with common reporting on top."],
+["Scale by need","Add program and portfolio layers only when many teams depend on each other."],
+["Visible workload","Show demand and capacity so overload is spotted early."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Separate method from reporting","Allow different team methods but agree one set of status measures."],
+["Add scaling late","Introduce SAFe-style layers only when coordination becomes the bottleneck."],
+["Capture all work","Put requests, projects and routine work in one intake."]]},
+{t:"note",h:"Source quality",x:"Most sources are vendor marketing. Customer figures quoted there are unverified."},
 {t:"links",h:"Sources",i:[
-["Adobe Check-in","Adobe’s description of the approach and toolkit.","https://www.adobe.com/check-in.html"],
-["Lessons learned with Check-in (Adobe blog, 2014)","Early lessons from rolling it out.","https://blog.adobe.com/en/publish/2014/03/10/lessons-learned-with-check-in"]]}
-],related:["okr","raci","kpi"]},
+["Scaled agile frameworks (Adobe business blog)","Adobe’s comparison of scaling frameworks.","https://business.adobe.com/blog/basics/scaled-agile-frameworks"],
+["Agile work management (Adobe Workfront)","Product page on agile support.","https://business.adobe.com/products/workfront/agile-work-management"]]}
+],related:["scrum","safe","kanban"]},
 
-"bp-accenture":{group:"bestpractices",title:"Accenture",tagline:"Agile and DevOps at scale, backed by automation.",
-bp:{themes:["Delivery","Governance"],hue:"#7B3FD0",mark:"Ac",headline:"Scale agile with automation"},
+"bp-accenture":{group:"bestpractices",title:"Accenture",tagline:"SAFe-based Agile and DevOps across its global delivery network, with automation.",
+bp:{hue:"#7B3FD0",mark:"Ac",headline:"One scaling framework, many locations",fw:{"Scrum / Agile":2,"SAFe / scaling":2,"DevOps / SRE":2}},
 sections:[
-{t:"p",x:"Accenture has described adopting Agile and DevOps at scale across its global delivery network, using SAFe as the scaling framework. It pairs this with myWizard, an automation platform it says supports distributed agile teams across the software lifecycle."},
-{t:"list",h:"Core practices",i:[
-["Scale with a common framework","Use one shared scaling approach, here SAFe, so teams across locations speak the same language."],
-["Distributed agile","Plan for time zones with clear working agreements, shared tooling and regular cross-site ceremonies."],
-["Automate the lifecycle","Automate builds, tests and deployments to shorten feedback loops and reduce manual errors."],
-["Shared delivery platform","Common tools and dashboards give leaders visibility without extra reporting."],
-["Measure outcomes","Track delivery speed, quality and client outcomes, not only activity."]]},
-{t:"steps",h:"Scaling checklist",i:[
-["Pick the framework","Choose a scaling approach, such as SAFe, and train everyone together."],
-["Set up the toolchain","Automate the pipeline before adding more teams."],
-["Align cadence","Synchronize planning across teams, including remote ones."],
-["Inspect and adapt","Review metrics each cycle and adjust."]]},
-{t:"note",h:"Source quality",x:"Most public material comes from Accenture press releases and a Scaled Agile case study. It is useful for ideas but is marketing, not independent evaluation."},
+{t:"p",x:"Accenture has described adopting Agile and DevOps at scale across its Global Delivery Network using SAFe, with a common toolchain. Its myWizard platform is presented as automation that supports distributed agile teams across the software lifecycle."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Accenture uses it","Evidence"],rows:[
+["SAFe","Used to scale Agile and DevOps across its global delivery network.","Scaled Agile case study"],
+["Agile","Distributed agile teams across locations and time zones.","Accenture newsroom"],
+["DevOps","Automation of builds, tests and deployments through myWizard.","Accenture newsroom and press coverage"]]},
+{t:"list",h:"Project management practices",i:[
+["Common framework","One scaling approach so teams in many places share terms and cadences."],
+["Distributed agile","Clear working agreements and cross-site ceremonies."],
+["Automation first","Automate the pipeline to shorten feedback loops."],
+["Shared tooling","Common tools and dashboards for visibility."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Pick one scaling framework","Train every team on it together."],
+["Build the pipeline first","Automate before adding teams."],
+["Synchronize planning","Plan across sites on a shared cadence."]]},
+{t:"note",h:"Source quality",x:"Sources are a vendor case study and press material, useful for ideas but not independent evaluation, and dated 2016–2021."},
 {t:"links",h:"Sources",i:[
-["Accenture case study (Scaled Agile)","How Accenture adopted Agile and DevOps at scale.","https://v5.scaledagileframework.com/?p=23774"],
-["myWizard announcement (Accenture newsroom, 2020)","Platform description and its support for distributed agile.","https://newsroom.accenture.com/news/2020/accenture-introduces-powerful-new-version-of-mywizard-intelligent-automation-platform"]]}
-],related:["safe","scrum","kanban"]},
+["Accenture case study (Scaled Agile)","Agile and DevOps at scale with SAFe.","https://v5.scaledagileframework.com/?p=23774"],
+["myWizard announcement (2020)","Platform and distributed agile.","https://newsroom.accenture.com/news/2020/accenture-introduces-powerful-new-version-of-mywizard-intelligent-automation-platform"]]}
+],related:["safe","scrum"]},
 
-"bp-ibm":{group:"bestpractices",title:"IBM",tagline:"Design thinking and the Garage Method for co-creating with users.",
-bp:{themes:["Innovation","Delivery","Culture and teams"],hue:"#0F62FE",mark:"IBM",headline:"Co-create, then ship in small steps"},
+"bp-ibm":{group:"bestpractices",title:"IBM",tagline:"The Garage Method blends design thinking, agile and DevOps; SAFe supported in its tools.",
+bp:{hue:"#0F62FE",mark:"IBM",headline:"Design thinking plus agile plus DevOps",fw:{"Scrum / Agile":2,"SAFe / scaling":1,"DevOps / SRE":2}},
 sections:[
-{t:"p",x:"IBM publishes two approaches that project teams can borrow. Enterprise Design Thinking keeps teams focused on user outcomes. The IBM Garage Method combines design thinking, agile, DevOps and cloud practices across the whole life of a solution."},
-{t:"list",h:"Core practices",i:[
-["Hills","Short statements of the user outcome the team will deliver: who, what, and the wow. They keep the team aimed at value."],
-["Playbacks","Regular demonstrations to stakeholders and users, so feedback arrives early."],
-["Sponsor users","Real users who work closely with the team throughout, not only at the end."],
-["Loops","Repeat observe, reflect and make, in small cycles."],
-["Garage Method phases","Cover culture, co-create, co-execute, co-operate and learn. The same team follows a solution from idea to live service."],
-["Minimum viable product","Release the smallest useful version, learn, and build on it."]]},
-{t:"steps",h:"Running a playback",i:[
-["Prepare the story","Tie it to the Hill, not to a list of features."],
-["Show working software","Demonstrate real use, ideally with a user."],
-["Capture feedback","Record what the stakeholders liked, questioned and want changed."],
-["Update the plan","Adjust the backlog before the next loop."]]},
-{t:"note",h:"Fit with other methods",x:"Hills and playbacks work well on top of Scrum or SAFe: a Hill is a product goal, a playback is a sprint review with a stronger user focus."},
+{t:"p",x:"IBM publishes the IBM Garage Method, which combines design thinking, agile and DevOps, and Enterprise Design Thinking with Hills, Playbacks and Sponsor Users. Its engineering tools (Engineering Lifecycle Management and Targetprocess) include support for planning with SAFe. We found nothing on how IBM’s own internal project office relates to PMI standards."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How IBM uses it","Evidence"],rows:[
+["Agile","Iterative delivery with working software shown in Playbacks.","IBM Garage Method and Design Thinking pages"],
+["DevOps","Garage Method covers building, delivering and running a solution.","IBM Garage Method"],
+["SAFe","Templates and planning tools in IBM products for SAFe at scale.","IBM product pages (vendor)"],
+["Design thinking","Hills state the user outcome; Sponsor Users work with teams throughout.","IBM Design Thinking"]]},
+{t:"list",h:"Project management practices",i:[
+["Hills","Short statements of the user outcome: who, what and why it matters."],
+["Playbacks","Regular demos to stakeholders to get early feedback."],
+["Sponsor users","Real users who work with the team all along."],
+["Minimum viable product","Release the smallest useful version and learn."],
+["Plan at scale with tools","Use SAFe-style planning where many teams depend on each other."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Write a Hill","Name the user and the outcome before planning work."],
+["Schedule playbacks","Demonstrate real use every iteration."],
+["Recruit a sponsor user","Give them a standing voice in the backlog."]]},
+{t:"note",h:"Fit with other methods",x:"A Hill works like a product goal and a playback like a sprint review with a stronger user focus."},
 {t:"links",h:"Sources",i:[
-["IBM Garage Method","IBM’s description of the method and its practices.","https://www.ibm.com/garage/method"],
-["Enterprise Design Thinking","IBM’s guide to Hills, Playbacks and Sponsor Users.","https://www.ibm.com/design/thinking/"]]}
+["IBM Garage Method","Method description.","https://www.ibm.com/garage/method"],
+["Enterprise Design Thinking","Hills, Playbacks and Sponsor Users.","https://www.ibm.com/design/thinking/"],
+["Scaled Agile Framework (IBM)","IBM’s overview of SAFe.","https://ibm.com/think/topics/scaled-agile-framework"]]}
 ],related:["scrum","safe","okr"]},
 
-"bp-nasa":{group:"bestpractices",title:"NASA",tagline:"Lifecycle gates, continuous risk management and lessons learned.",
-bp:{themes:["Risk and quality","Governance","Decisions"],hue:"#1F3A93",mark:"NASA",headline:"Decide at gates, learn from every mission"},
+"bp-nasa":{group:"bestpractices",title:"NASA",tagline:"A gated life cycle with formal reviews, tailored per project; agile allowed within it.",
+bp:{hue:"#1F3A93",mark:"NASA",headline:"Gates and tailoring, with agile inside",fw:{"Stage-gate / predictive":2,"Scrum / Agile":1,"Hybrid":1}},
 sections:[
-{t:"p",x:"NASA runs some of the most complex projects there are, and publishes much of how it does so. Its project life cycle has formal decision points, its Systems Engineering Handbook sets out disciplined technical management, and its Lessons Learned Information System shares what past missions taught."},
-{t:"list",h:"Core practices",i:[
-["Life cycle with Key Decision Points","Work moves through phases, and at each Key Decision Point a review board decides whether to proceed."],
-["Continuous risk management","Identify, analyze, plan, track and control risks throughout, not only at the start."],
-["Risk-informed decisions","Combine risk analysis with other factors such as cost, schedule and technical performance when choosing."],
-["Joint cost and schedule confidence","Estimate cost and schedule together as a probability, so the plan states how confident it is."],
-["Systems engineering","Manage requirements, interfaces, verification and validation as a connected whole."],
-["Lessons Learned","Capture and publish lessons so other teams find them before repeating the mistake."]]},
-{t:"table",h:"Compare with other approaches",head:["NASA practice","Similar idea elsewhere"],rows:[
+{t:"p",x:"NASA’s space flight programs and projects follow NPR 7120.5, a life cycle with phases, Key Decision Points and formal reviews. The requirements can be tailored with approval, and NASA material describes agile software work running inside this gated life cycle, with software governed by NPR 7150.2. We found no source mapping NASA’s approach to PMI’s PMBOK."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How NASA uses it","Evidence"],rows:[
+["Stage-gate","Phases separated by Key Decision Points, each with a review and a decision authority.","NPR 7120.5"],
+["Tailoring","Requirements may be tailored, customized or waived with approval; Centers hold delegated authority.","NPR 7120.5 and Center procedures"],
+["Agile","A project may propose a tailored review plan that applies an agile approach, if the decision authority approves.","NASA review guidance"],
+["Hybrid","Agile software teams working inside a waterfall-style life cycle, producing the outputs the requirements demand.","NASA presentation “Agile in a Waterfall World”"],
+["Software engineering","NPR 7150.2 and a handbook set software requirements and tailoring.","NASA Software Engineering Handbook"]]},
+{t:"list",h:"Project management practices",i:[
+["Key Decision Points","A review board decides whether to proceed to the next phase."],
+["Continuous risk management","Identify, analyze, plan, track and control risks throughout the project."],
+["Joint cost and schedule confidence","State the probability of meeting both."],
+["Systems engineering discipline","Requirements, interfaces, verification and validation are managed together."],
+["Lessons learned","Captured in a public information system for reuse."]]},
+{t:"table",h:"Compare with frameworks on this site",head:["NASA practice","Closest equivalent"],rows:[
 ["Key Decision Point","PRINCE2 stage boundary; stage gate in PMBOK"],
-["Continuous risk management","Risk register and regular risk reviews"],
-["Lessons Learned system","Lessons log, retrospective"]]},
-{t:"note",h:"Scale it down",x:"You don’t need a formal board. Define two or three decision points, name who decides, and write down the criteria in advance."},
+["Tailoring with approval","PRINCE2 tailoring; PMBOK tailoring"],
+["Agile inside a gated life cycle","Hybrid approach"],
+["Lessons learned system","Lessons log and retrospectives"]]},
+{t:"note",h:"Check currency",x:"NPR 7120.5F and its interim directive carry expiration dates. Check the NASA directives library for the current revision before relying on them."},
 {t:"links",h:"Sources",i:[
-["NASA Systems Engineering Handbook","The agency’s reference for systems engineering practice.","https://www.nasa.gov/reference/systems-engineering-handbook/"],
-["Lessons Learned Information System","Public database of lessons from NASA programmes.","https://llis.nasa.gov/"]]}
-],related:["risk","prince2","pmo-governance","pmbok"]},
+["NPR 7120.5F","Space flight program and project management requirements.","https://explorers.larc.nasa.gov/2023ESE/pdf_files/NASA01.%20NPR%207120.5F%20NASA%20Space%20Flight%20Program%20and%20Project%20Management%20Requirements.pdf"],
+["Agile in a Waterfall World (NASA, 2024)","Agile software within the life cycle.","https://ntrs.nasa.gov/api/citations/20240002144/downloads/Agile_in_a_Waterfall_World_v005_2024_02_22.pdf"],
+["NASA Project Management Handbook","Guidance on project management.","https://ntrs.nasa.gov/api/citations/20220009501/downloads/PM%20Handbook_June%202024.pdf"],
+["Lessons Learned Information System","Public lessons database.","https://llis.nasa.gov/"]]}
+],related:["prince2","pmbok","risk","pmo-governance"]},
 
-"bp-capgemini":{group:"bestpractices",title:"Capgemini",tagline:"Align stakeholders in a workshop, then deliver in product-aligned pods.",
-bp:{themes:["Delivery","Innovation","Culture and teams"],hue:"#0A8FB5",mark:"Cg",headline:"Align first, then deliver fast"},
+"bp-capgemini":{group:"bestpractices",title:"Capgemini",tagline:"Align stakeholders in workshops, then deliver in agile product-aligned pods.",
+bp:{hue:"#0A8FB5",mark:"Cg",headline:"Align first, then deliver in pods",fw:{"Scrum / Agile":2,"DevOps / SRE":2}},
 sections:[
-{t:"p",x:"Capgemini describes two complementary offerings. The Accelerated Solutions Environment (ASE) brings stakeholders together for intensive workshops, such as DesignShops, to align on a way forward. The Accelerated Delivery Center (ADC) is an agile delivery model with product-aligned teams."},
-{t:"list",h:"Core practices",i:[
-["DesignShop","A multi-day, facilitated event where large groups of stakeholders align on direction and plans."],
-["Discovery Day","A shorter session for a small decision-making group."],
-["Product-aligned pods","Cross-functional teams organized around a product rather than a project."],
-["Shared horizontal team","A small team that supplies project management and CI/CD platform support to the pods."],
-["Delivery metrics","Capgemini’s case studies cite shorter time to market and fewer defects. These are self-reported."]]},
-{t:"steps",h:"A lightweight alignment workshop",i:[
-["Invite the decision makers","Include people who can decide, and those affected."],
-["Frame the challenge","State the question in one sentence."],
-["Diverge, then converge","Generate options broadly, then vote and refine."],
-["Leave with a plan","Owners, next steps and dates before anyone leaves."]]},
-{t:"note",h:"Caution",x:"The sources are Capgemini web pages and case summaries, so performance figures are self-reported and unverified."},
+{t:"p",x:"Capgemini describes two complementary offerings. The Accelerated Solutions Environment (ASE) is a facilitation practice that aligns stakeholders through events such as the DesignShop. The Accelerated Delivery Center (ADC) is its agile delivery model, with cross-functional product-aligned teams (PODs) and CI/CD tooling. We found no source tying either to a named framework such as SAFe."},
+{t:"table",h:"Frameworks and how they are adopted",head:["Framework","How Capgemini uses it","Evidence"],rows:[
+["Agile","Product-aligned cross-functional PODs deliver in the Accelerated Delivery Center.","Capgemini expert perspective"],
+["DevOps","A shared team supplies project management and CI/CD platform support to the PODs.","Capgemini expert perspective"],
+["Stakeholder alignment","DesignShops and Discovery Days align stakeholders before and during delivery.","Capgemini ASE pages"]]},
+{t:"list",h:"Project management practices",i:[
+["DesignShop","A multi-day facilitated event to align large groups on direction."],
+["Discovery Day","A short session for a small decision-making group."],
+["Product-aligned PODs","Teams organized around a product rather than a project."],
+["Shared horizontal team","Project management and platform support shared across PODs."],
+["Delivery measures","Case studies cite shorter time to market and fewer defects; these are self-reported."]]},
+{t:"steps",h:"What a project manager can copy",i:[
+["Align before building","Hold a workshop with deciders and affected people."],
+["Form product teams","Group people by product, not by function."],
+["Share the platform work","One small team handles tooling and coordination."]]},
+{t:"note",h:"Caution",x:"Sources are Capgemini web pages and client case summaries, so figures are self-reported and unverified."},
 {t:"links",h:"Sources",i:[
-["Accelerated Solutions Environment","Capgemini’s description of DesignShops and Discovery Days.","https://www.capgemini.com/in-en/solutions/accelerated-solution-environment/"],
-["Increasing velocity with the Accelerated Delivery Center","Capgemini perspective on the delivery model.","https://www.capgemini.com/ca-en/insights/expert-perspectives/increasing-velocity-with-the-accelerated-delivery-center/"]]}
+["Accelerated Solutions Environment","DesignShops and Discovery Days.","https://www.capgemini.com/in-en/solutions/accelerated-solution-environment/"],
+["Increasing velocity with the Accelerated Delivery Center","Delivery model.","https://www.capgemini.com/ca-en/insights/expert-perspectives/increasing-velocity-with-the-accelerated-delivery-center/"]]}
 ],related:["scrum","safe","strategic-cascade"]},
 
-"bp-pmalliance":{group:"bestpractices",title:"PMAlliance",tagline:"Placeholder: no authoritative public practice set found yet.",
-bp:{themes:["Governance"],hue:"#8A6200",mark:"PM",headline:"Needs your source"},
+"bp-pmalliance":{group:"bestpractices",title:"PMAlliance",tagline:"Placeholder: no authoritative public project management material found yet.",
+bp:{hue:"#8A6200",mark:"PM",headline:"Needs your source",fw:{}},
 sections:[
-{t:"p",x:"We could not identify a published set of project management practices from an organization called PMAlliance. Rather than invent content, this page is a placeholder."},
-{t:"note",h:"What we need",x:"Please share the organization’s website or documents, or confirm whether another name was meant, such as PMI. The page can then be filled in with sourced practices."},
-{t:"list",h:"General practices that most standards agree on",i:[
-["Define success first","Agree objectives, scope and measures of success with the sponsor."],
-["Plan at the right level","Detailed for the near term, outlined for later."],
-["Manage risks and issues actively","Keep a register, assign owners and review it regularly."],
-["Communicate with stakeholders","Tailor frequency and format to each group."],
-["Review and learn","Hold lessons-learned reviews during and after the project."]]}
+{t:"p",x:"We could not identify a published set of project management practices or framework adoption from an organization called PMAlliance. Rather than invent content, this page is a placeholder."},
+{t:"note",h:"What we need",x:"Please share the organization’s website or documents, or confirm whether another name was meant, such as PMI. The page can then be completed with sourced practices."}
 ],related:["pmbok","risk","raci"]}
 });
