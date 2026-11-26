@@ -262,10 +262,18 @@ sections:[
 ["Approve business case","A","R","C","","I"],
 ["Produce solution design","I","C","A","R","C"],
 ["Build and test","","A","C","R","I"],
-["Go-live decision","A","R","C","C","C"]]}
-],related:["rapid","power-interest","prince2"]},
+["Go-live decision","A","R","C","C","C"]]},
+{t:"table",h:"How PM frameworks approach RACI",head:["Framework","How it assigns roles and responsibilities","RACI link"],rows:[
+["PMI / PMBOK","Responsibility assignment matrices are a named tool in resource planning. RACI is the best-known format, alongside hierarchical and text-based charts.","Direct: RACI is the standard example of a responsibility assignment matrix."],
+["PRINCE2","Roles and responsibilities are written as role descriptions in the project management team structure. The Executive is the single point of accountability.","Compatible: PRINCE2 does not prescribe a matrix, but teams often add a RACI for stage-level work."],
+["Scrum","Three accountabilities: Product Owner, Scrum Master and Developers. The Developers plan and decide how the work is done, so no matrix is needed.","Weak: the accountabilities replace RACI. One accountable owner per area, such as the Product Owner for the Product Backlog."],
+["SAFe","Roles are defined per level: team, ART, solution and portfolio. One of its principles is to decentralize decision-making.","Partial: useful for cross-ART work and governance, not a SAFe artefact."],
+["Kanban","Roles are optional. Explicit policies on the board say who may do what at each stage.","Weak: policies play the part of a matrix; a RACI can document handoffs between teams."],
+["ITIL","Practices describe the roles involved, and organizations commonly add RACI matrices for process roles such as change and incident management.","Common: a typical way to assign process roles, not mandated by ITIL."]]},
+{t:"note",h:"Hybrid tip",x:"On a hybrid project, keep a light RACI for governance and handoffs between teams, and let agile teams use their own accountabilities inside. State where the two meet, for example that the Product Owner is the A for backlog content."}
+],related:["rapid","power-interest","prince2","scrum","safe"]},
 
-rapid:{group:"people",title:"RAPID decision analysis",tagline:"How decisions are made: who recommends, who agrees, who decides.",
+rapid:{group:"people",title:"RAPID analysis",tagline:"How decisions are made: who recommends, who agrees, who decides.",
 sections:[
 {t:"p",x:"RAPID, developed by Bain & Company, clarifies decision roles. Where RACI is about doing work, RAPID is about making a specific decision. The letters don’t follow the order of the process: a recommendation is formed with input, agreed, decided and then performed."},
 {t:"list",h:"The five roles",i:[
@@ -283,8 +291,16 @@ sections:[
 {t:"list",h:"RAPID or RACI?",i:[
 ["Use RACI","For activities and deliverables: who works on what."],
 ["Use RAPID","For decisions: scope changes, go-live, vendor selection, budget release."],
-["Use both","On governance-heavy projects; link each RAPID decision to an A in the RACI."]]}
-],related:["raci","pmo-governance","power-interest"]},
+["Use both","On governance-heavy projects; link each RAPID decision to an A in the RACI."]]},
+{t:"table",h:"How PM frameworks approach decisions",head:["Framework","How decisions are made","Closest RAPID link"],rows:[
+["PMI / PMBOK","Decisions on changes go through integrated change control, often a change control board. The guide also lists decision-making techniques such as voting and autocratic decisions.","Change control board is close to A or D; the sponsor or board is the D. RAPID itself is not part of PMBOK."],
+["PRINCE2","The Project Board decides at stage boundaries. Management by exception delegates decisions within tolerances, and a Change Authority can hold delegated change decisions.","Executive = D; Senior User and Senior Supplier approve, close to A; Project Manager = R; Team Manager = P."],
+["Scrum","Decision rights are built in. The Product Owner decides on the Product Backlog and can cancel a Sprint, and the Developers decide how to build and what fits in the Sprint.","One D per area: Product Owner for what and why, Developers for how. The Scrum Master has no say over the content."],
+["SAFe","Decentralize most decisions; centralize those that are strategic, infrequent, long-lasting or need economies of scale. Epics are approved by Lean Portfolio Management; features are owned by Product Management.","D differs by level: LPM for epics, Product Management for features, teams for stories."],
+["Kanban","Decisions sit with the team at the point of work, within explicit policies. A replenishment meeting decides what enters the workflow.","Replenishment decider = D for what to pull; policies pre-agree the rest."],
+["ITIL","Change enablement uses a change authority matched to the type and risk of the change: standard, normal or emergency. A change advisory board advises.","Change authority = D; change advisory board = I or A, depending on its mandate."]]},
+{t:"note",h:"Where RAPID adds value",x:"Scrum and Kanban already place decision rights in roles and policies. RAPID is most useful where decisions cross teams or levels, for example scope changes, vendor choice or go-live on a PRINCE2 or SAFe programme."}
+],related:["raci","pmo-governance","power-interest","pmbok","prince2","scrum","safe"]},
 
 "power-interest":{group:"people",title:"Power–interest matrix",tagline:"Prioritize stakeholder engagement by how much they can affect the project and how much they care.",
 sections:[
