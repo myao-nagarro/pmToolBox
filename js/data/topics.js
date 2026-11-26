@@ -4,7 +4,8 @@ const GROUPS = [
   {id:"frameworks", name:"PM frameworks"},
   {id:"people", name:"People and roles"},
   {id:"raid", name:"RAID"},
-  {id:"concepts", name:"Related concepts"}
+  {id:"concepts", name:"Related concepts"},
+  {id:"bestpractices", name:"Best Practices"}
 ];
 const GN = Object.fromEntries(GROUPS.map(g=>[g.id,g.name]));
 
@@ -418,7 +419,7 @@ sections:[
 {t:"note",h:"Test at every boundary",x:"If the chain breaks, the project should change or stop. Stopping a project whose justification has gone is good governance, not failure."}
 ],related:["prince2","okr","strategic-cascade","pmo-governance"]},
 
-togaf:{group:"concepts",title:"TOGAF® Standard",tagline:"An enterprise architecture method for moving from current to target state.",
+togaf:{group:"concepts",title:"TOGAF®",tagline:"An enterprise architecture method for moving from current to target state.",
 sections:[
 {t:"p",x:"TOGAF, published by The Open Group (10th Edition, 2022), centres on the Architecture Development Method (ADM): an iterative cycle for describing current and target architectures and planning the transition. Projects are where architecture becomes reality, so PMs meet TOGAF in phases E to G."},
 {t:"steps",h:"ADM phases",i:[

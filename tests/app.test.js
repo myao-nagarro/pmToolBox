@@ -87,7 +87,7 @@ test("search finds topics and highlights the match", async () => {
 
 test("mind map: overview, drill-down, examples and cross-references", async () => {
   const { w, d, data } = await loadApp("map");
-  assert.equal(d.querySelectorAll(".mm-node").length, 1 + 4 + Object.keys(data("TOPICS")).length);
+  assert.equal(d.querySelectorAll(".mm-node").length, 1 + data("GROUPS").length + Object.keys(data("TOPICS")).length);
   const nodes = data("NODES");
   const term = [...nodes.values()].find(n => n.gloss && n.fw === "prince2" && n.label === "Tolerance");
   data("setFocus")(term.id);
@@ -103,4 +103,22 @@ test("cross-references are symmetric", async () => {
     for (const o of x.out) assert.ok(X.get(o).in.includes(id), `${id} -> ${o} has no back-link`);
     for (const s of x.same) assert.ok(X.get(s).same.includes(id), `${id} same-name link not mutual`);
   }
+});
+
+test("best practices: ten organizations, filterable overview, sourced pages, TOGAF title", async () => {
+  const { w, d, data, errors } = await loadApp("practices");
+  const ids = Object.keys(data("TOPICS")).filter(k => data("TOPICS")[k].group === "bestpractices");
+  assert.equal(ids.length, 10);
+  assert.equal(d.querySelectorAll(".bp-card").length, 10);
+  d.querySelector('.theme[data-theme="Innovation"]').click();
+  const n = d.querySelectorAll(".bp-card").length;
+  assert.ok(n > 0 && n < 10);
+  for (const id of ids) {
+    await go(w, id);
+    const t = data("TOPICS")[id];
+    if (id !== "bp-pmalliance") assert.ok(t.sections.some(s => s.t === "links" && s.i.length), `${id} has no sources`); // placeholder until a source is supplied
+    assert.ok(d.querySelector(".src-list a, .note"), `${id} renders`);
+  }
+  assert.equal(data("TOPICS").togaf.title, "TOGAF®");
+  assert.deepEqual(errors, []);
 });

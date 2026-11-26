@@ -1,10 +1,10 @@
 /* Service worker: cache the app shell so PM Toolbox works offline.
    Bump CACHE when files change so clients pick up the new version. */
-const CACHE = "pm-toolbox-v1";
+const CACHE = "pm-toolbox-v2";
 const FILES = [
   "./", "./index.html", "./css/styles.css", "./manifest.webmanifest", "./icons/icon.svg",
   "./js/data/topics.js", "./js/data/glossary.js", "./js/data/glossary-examples.js",
-  "./js/data/glossary-concepts.js", "./js/data/compare.js",
+  "./js/data/glossary-concepts.js", "./js/data/compare.js", "./js/data/practices.js",
   "./js/core.js", "./js/glossary.js", "./js/views.js", "./js/mindmap.js", "./js/router.js"
 ];
 self.addEventListener("install", e => {

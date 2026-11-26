@@ -1,6 +1,6 @@
 "use strict";
 /* ---------- Router ---------- */
-const VIEW_TITLES={home:"Library",map:"Mind map",glossary:"Glossary"};
+const VIEW_TITLES={home:"Library",map:"Mind map",glossary:"Glossary",practices:"Best practices"};
 let firstRoute=true;
 function route(){
   const h=(location.hash||"").slice(1)||"home";
@@ -8,6 +8,7 @@ function route(){
   if(qIn.value&&document.activeElement!==qIn)qIn.value="";
   if(h==="map")renderMap();
   else if(h==="glossary")renderGlossary();
+  else if(h==="practices")renderPractices();
   else if(TOPICS[h])renderTopic(h);
   else renderHome();
   const key=TOPICS[h]||VIEW_TITLES[h]?h:"home";

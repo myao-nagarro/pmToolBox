@@ -1,6 +1,6 @@
 "use strict";
 /* ---------- Mind map ---------- */
-const GDESC={frameworks:"End-to-end ways of running projects, programmes and services.",people:"Who does what, who decides, and who needs to be engaged.",raid:"Controls for risks, assumptions, issues and dependencies.",concepts:"Ideas that connect projects to strategy, value and architecture."};
+const GDESC={frameworks:"End-to-end ways of running projects, programmes and services.",people:"Who does what, who decides, and who needs to be engaged.",raid:"Controls for risks, assumptions, issues and dependencies.",concepts:"Ideas that connect projects to strategy, value and architecture.",bestpractices:"How leading companies and organizations run projects, with sources."};
 const KW={
   pmbok:["pmbok","pmi","sponsor","wbs","baseline","charter"],
   prince2:["prince2","project board","senior user","senior supplier","executive","stage boundary"],

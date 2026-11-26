@@ -10,10 +10,18 @@ const debounce=(fn,ms)=>{let t;return (...a)=>{clearTimeout(t);t=setTimeout(()=>
 function focusHeading(){const h=main.querySelector("h1");if(!h)return;h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}
 
 /* ---------- Sidebar ---------- */
+const GICON={
+  frameworks:"M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z",
+  people:"M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z",
+  raid:"M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
+  concepts:"M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z",
+  bestpractices:"M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+};
+const icon=(g,cls="")=>`<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${GICON[g]||GICON.frameworks}"/></svg>`;
 function buildSide(){
-  side.innerHTML = GROUPS.map(g=>`<section class="grp" style="--gc:var(--c-${g.id})"><h2>${esc(g.name)}</h2><ul>${
+  side.innerHTML = GROUPS.map(g=>`<section class="grp" style="--gc:var(--c-${g.id})"><h2>${icon(g.id)}${esc(g.name)}</h2><ul>${
     Object.entries(TOPICS).filter(([,t])=>t.group===g.id).map(([id,t])=>`<li><a href="#${id}" data-nav="${id}">${esc(t.title)}</a></li>`).join("")
-  }</ul></section>`).join("") + `<a class="side-link" href="#map" data-nav="map" data-mm="root">Mind map<small>Navigate every concept and its links</small></a><a class="side-link" href="#glossary" data-nav="glossary">Glossary<small>Key terms per framework, with sources</small></a>`;
+  }</ul></section>`).join("") + `<a class="side-link" href="#practices" data-nav="practices">Best practices overview<small>How leading organizations run projects</small></a><a class="side-link" href="#map" data-nav="map" data-mm="root">Mind map<small>Navigate every concept and its links</small></a><a class="side-link" href="#glossary" data-nav="glossary">Glossary<small>Key terms per framework, with sources</small></a>`;
 }
 buildSide();
 function markActive(h){document.querySelectorAll("[data-nav]").forEach(a=>{if(a.dataset.nav===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});}
@@ -38,6 +46,8 @@ function piGrid(list){
     }).join("")
   }<div class="xlab">Interest: low to high</div></div>`;
 }
+/** Cells carry their column name so tables can turn into stacked cards on narrow containers. */
+const lab=h=>` data-label="${esc(h)}"`;
 function rmCell(c){
   if(c.startsWith("–"))return `<span class="rm-none">${esc(c)}</span>`;
   if(c.startsWith("≈ "))return `<span class="rm-part"><b title="Partial match">≈</b>${esc(c.slice(2))}</span>`;
@@ -48,11 +58,12 @@ function sec(s){
     case "p": return `<p class="prose">${esc(s.x)}</p>`;
     case "list": return `<section class="block"><h2>${esc(s.h)}</h2><dl class="terms">${s.i.map(([a,b])=>`<div><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join("")}</dl></section>`;
     case "steps": return `<section class="block"><h2>${esc(s.h)}</h2><ol class="steps">${s.i.map(([a,b])=>`<li><strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join("")}</ol></section>`;
-    case "table": return `<section class="block"><h2>${esc(s.h)}</h2><div class="tbl-wrap"><table><thead><tr>${s.head.map(h=>`<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${s.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${esc(c)}</th>`:`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`;
+    case "table": return `<section class="block"><h2>${esc(s.h)}</h2><div class="tbl-wrap"><table><thead><tr>${s.head.map(h=>`<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${s.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${esc(c)}</th>`:`<td${lab(s.head[i])}>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`;
+    case "links": return `<section class="block"><h2>${esc(s.h)}</h2><ul class="src-list">${s.i.map(([a,b,u])=>`<li>${u?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(a)}<svg class="ic ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>`:esc(a)}<span>${esc(b)}</span></li>`).join("")}</ul></section>`;
     case "note": return `<aside class="note"><h3>${esc(s.h)}</h3><p>${esc(s.x)}</p></aside>`;
     case "pi": return `<section class="block"><h2>The grid</h2>${piGrid(null)}</section>`;
     case "gloss": return `<section class="block"><h2>${esc(s.h)}</h2><p class="sec-sub">Key terms with their source. Definitions are paraphrased; follow the source for the official wording.</p>${glTable(s.fw,GLOSSARY[s.fw].terms)}<p class="gl-srch">Sources</p>${glSources(s.fw)}</section>`;
-    case "rolemap": return `<section class="block"><h2>${esc(s.h)}</h2><div class="seg" role="group" aria-label="Frameworks to show">${s.cols.map((c,i)=>`<button aria-pressed="true" data-act="rm-col" data-col="${i}">${esc(c)}</button>`).join("")}</div><p class="legend"><span>Select frameworks to show or hide them.</span><span><b>≈</b> partial match</span><span><b>–</b> no direct equivalent</span></p><div class="tbl-wrap"><table class="rolemap"><thead><tr><th scope="col">Role archetype</th>${s.cols.map((c,i)=>`<th scope="col" data-col="${i}"><a href="#${s.links[i]}">${esc(c)}</a></th>`).join("")}</tr></thead><tbody>${s.rows.map(r=>`<tr><th scope="row">${esc(r[0])}<small>${esc(r[1])}</small></th>${r.slice(2).map((c,i)=>`<td data-col="${i}">${rmCell(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`;
+    case "rolemap": return `<section class="block"><h2>${esc(s.h)}</h2><div class="seg" role="group" aria-label="Frameworks to show">${s.cols.map((c,i)=>`<button aria-pressed="true" data-act="rm-col" data-col="${i}">${esc(c)}</button>`).join("")}</div><p class="legend"><span>Select frameworks to show or hide them.</span><span><b>≈</b> partial match</span><span><b>–</b> no direct equivalent</span></p><div class="tbl-wrap"><table class="rolemap"><thead><tr><th scope="col">Role archetype</th>${s.cols.map((c,i)=>`<th scope="col" data-col="${i}"><a href="#${s.links[i]}">${esc(c)}</a></th>`).join("")}</tr></thead><tbody>${s.rows.map(r=>`<tr><th scope="row">${esc(r[0])}<small>${esc(r[1])}</small></th>${r.slice(2).map((c,i)=>`<td data-col="${i}"${lab(s.cols[i])}>${rmCell(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`;
   }
   return "";
 }
